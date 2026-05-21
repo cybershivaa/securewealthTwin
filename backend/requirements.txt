@@ -1,0 +1,15 @@
+# Core API
+fastapi
+uvicorn[standard]
+sqlalchemy
+pydantic
+
+# HTTP client for HuggingFace Inference API
+requests
+
+# Text Processing
+regex
+
+# Async support
+aiofiles
+python-multipart
