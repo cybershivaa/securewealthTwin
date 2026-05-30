@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "securewealth-twin-backend"
+version = "0.1.0"
+description = "SecureWealth Twin banking fraud detection backend"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+  "sqlalchemy>=2.0",
+  "asyncpg>=0.29",
+  "pydantic-settings>=2.3",
+  "python-jose[cryptography]>=3.3",
+  "cryptography>=42.0",
+  "orjson>=3.10",
+  "redis>=5.0",
+  "httpx>=0.27",
+  "pqcrypto>=0.3.4",
+  "alembic>=1.13",
+  "pytest>=8.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "app"}
+
+[tool.setuptools.packages.find]
+where = ["app"]
