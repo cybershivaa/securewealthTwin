@@ -1,0 +1,26 @@
+{
+  "name": "securewealth-twin-mobile",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "axios": "^1.7.4",
+    "react": "^18.3.1",
+    "react-native": "^0.75.4",
+    "react-native-biometrics": "^3.0.1",
+    "react-native-keychain": "^10.0.0",
+    "react-native-quick-crypto": "^0.7.12",
+    "react-native-ssl-pinning": "^1.6.8"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-native": "^0.73.0",
+    "typescript": "^5.5.4"
+  }
+}
