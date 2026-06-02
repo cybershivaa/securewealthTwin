@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSB Digital - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #1a3d3a 0%, #0f2825 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #1a3d3a;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #FFD500, #FFC500);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            font-size: 35px;
+            font-weight: bold;
+            color: #1a3d3a;
+        }
+
+        h1 {
+            color: #FFD500;
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 13px;
+        }
+
+        /* Method Tabs */
+        .method-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 213, 0, 0.2);
+        }
+
+        .method-tab {
+            flex: 1;
+            padding: 12px 0;
+            background: none;
+            border: none;
+            color: #b0b0b0;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .method-tab.active {
+            color: #FFD500;
+            border-bottom-color: #FFD500;
+        }
+
+        .method-tab:hover {
+            color: #ffffff;
+        }
+
+        /* Form Container */
+        .form-container {
+            display: none;
+        }
+
+        .form-container.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(255, 213, 0, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #FFD500;
+            background: rgba(255, 213, 0, 0.1);
+        }
+
+        input::placeholder {
+            color: #666;
+        }
+
+        /* Error & Success Messages */
+        .error {
+            color: #ff6b6b;
+            font-size: 12px;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .success {
+            color: #51cf66;
+            font-size: 12px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .success.show {
+            display: block;
+        }
+
+        /* Help Text */
+        .help-text {
+            font-size: 12px;
+            color: #999;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        button {
+            padding: 14px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: capitalize;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FFD500, #FFC500);
+            color: #1a3d3a;
+            width: 100%;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 213, 0, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Links */
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+
+        .footer-links a {
+            color: #FFD500;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 213, 0, 0.3);
+            border-top-color: #FFD500;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+        }
+
+        .spinner.active {
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success Screen */
+        .success-screen {
+            text-align: center;
+            display: none;
+        }
+
+        .success-screen.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #51cf66, #40c057);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            font-size: 40px;
+        }
+
+        .success-message {
+            color: #51cf66;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .success-details {
+            color: #b0b0b0;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .method-tabs {
+                flex-direction: column;
+            }
+
+            .method-tab {
+                padding: 8px 0;
+                border-bottom: none;
+                border-left: 2px solid transparent;
+                padding-left: 10px;
+            }
+
+            .method-tab.active {
+                border-bottom-color: transparent;
+                border-left-color: #FFD500;
+            }
+
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">₹</div>
+            <h1>Welcome Back</h1>
+            <p class="subtitle">Sign in to your PSB Digital account</p>
+        </div>
+
+        <!-- Method Selection Tabs -->
+        <div class="method-tabs">
+            <button class="method-tab active" onclick="switchMethod('credentials', event)">Credentials</button>
+            <button class="method-tab" onclick="switchMethod('mobile', event)">Mobile OTP</button>
+            <button class="method-tab" onclick="switchMethod('mpin', event)">MPIN</button>
+        </div>
+
+        <!-- Method 1: Credentials Login -->
+        <div class="form-container active" id="method-credentials">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+                <div class="error" id="error-username"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+                <div class="error" id="error-password"></div>
+            </div>
+
+            <label style="display: flex; align-items: center; font-weight: 400; margin-bottom: 20px;">
+                <input type="checkbox" id="rememberMe" style="width: 18px; height: 18px; margin-right: 8px; cursor: pointer;">
+                Remember me
+            </label>
+
+            <button class="btn-primary" onclick="loginWithCredentials()">
+                <span class="spinner" id="spinner-cred"></span>Sign In
+            </button>
+
+            <div class="divider">OR</div>
+
+            <button class="btn-primary" style="background: transparent; border: 2px solid #FFD500; color: #FFD500;" onclick="switchMethod('mobile', event)">
+                Login with Mobile OTP →
+            </button>
+        </div>
+
+        <!-- Method 2: Mobile OTP Login -->
+        <div class="form-container" id="method-mobile">
+            <div id="mobile-step1">
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input type="tel" id="mobile" placeholder="Enter 10-digit mobile number" maxlength="10" pattern="[0-9]{10}">
+                    <div class="error" id="error-mobile"></div>
+                    <div class="help-text">We'll send an OTP to verify your mobile</div>
+                </div>
+
+                <button class="btn-primary" onclick="sendMobileOtp()">
+                    <span class="spinner" id="spinner-otp-send"></span>Send OTP
+                </button>
+            </div>
+
+            <div id="mobile-step2" style="display: none;">
+                <div class="form-group">
+                    <label>Enter OTP</label>
+                    <input type="text" id="mobileOtp" placeholder="Enter 6-digit OTP" maxlength="6" pattern="[0-9]{6}">
+                    <div class="error" id="error-mobileOtp"></div>
+                    <div class="help-text">Check your SMS or backend logs (development)</div>
+                </div>
+
+                <button class="btn-primary" onclick="verifyMobileOtp()">
+                    <span class="spinner" id="spinner-otp-verify"></span>Verify OTP
+                </button>
+
+                <button class="btn-primary" style="background: transparent; border: 2px solid #FFD500; color: #FFD500; margin-top: 10px;" onclick="document.getElementById('mobile-step1').style.display='block'; document.getElementById('mobile-step2').style.display='none';">
+                    ← Back
+                </button>
+            </div>
+        </div>
+
+        <!-- Method 3: MPIN Login -->
+        <div class="form-container" id="method-mpin">
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="tel" id="mpinMobile" placeholder="Enter 10-digit mobile number" maxlength="10" pattern="[0-9]{10}">
+                <div class="error" id="error-mpinMobile"></div>
+            </div>
+
+            <div class="form-group">
+                <label>MPIN</label>
+                <input type="password" id="mpin" placeholder="Enter 4-6 digit MPIN" maxlength="6" pattern="[0-9]{4,6}">
+                <div class="error" id="error-mpin"></div>
+                <div class="help-text">Your personal identification number</div>
+            </div>
+
+            <button class="btn-primary" onclick="loginWithMpin()">
+                <span class="spinner" id="spinner-mpin"></span>Login with MPIN
+            </button>
+        </div>
+
+        <!-- Success Screen -->
+        <div class="success-screen" id="successScreen">
+            <div class="success-icon">✓</div>
+            <div class="success-message">Login Successful!</div>
+            <div class="success-details" id="successDetails">
+                You have been successfully logged in.<br>
+                Redirecting to dashboard...
+            </div>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="footer-links">
+            <a href="registration.html">Create Account</a>
+            <a href="welcome.html">← Back Home</a>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api';
+        let loginState = {};
+
+        function switchMethod(method, evt) {
+            // Hide all methods
+            document.querySelectorAll('.form-container').forEach(el => el.classList.remove('active'));
+            // Hide success screen
+            document.getElementById('successScreen').classList.remove('active');
+            
+            // Show selected method
+            document.getElementById(`method-${method}`).classList.add('active');
+
+            // Update active tab
+            document.querySelectorAll('.method-tab').forEach((tab) => {
+                tab.classList.remove('active');
+            });
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add('active');
+            }
+
+            // Reset mobile OTP flow
+            if (method === 'mobile') {
+                document.getElementById('mobile-step1').style.display = 'block';
+                document.getElementById('mobile-step2').style.display = 'none';
+            }
+        }
+
+        function showError(fieldId, message) {
+            const errorEl = document.getElementById(`error-${fieldId}`);
+            if (errorEl) {
+                errorEl.textContent = message;
+                errorEl.classList.add('show');
+            }
+        }
+
+        function clearError(fieldId) {
+            const errorEl = document.getElementById(`error-${fieldId}`);
+            if (errorEl) {
+                errorEl.textContent = '';
+                errorEl.classList.remove('show');
+            }
+        }
+
+        async function loginWithCredentials() {
+            clearError('username');
+            clearError('password');
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!username) {
+                showError('username', 'Username is required');
+                return;
+            }
+            if (!password) {
+                showError('password', 'Password is required');
+                return;
+            }
+
+            const spinner = document.getElementById('spinner-cred');
+            spinner.classList.add('active');
+
+            try {
+                const response = await fetch(`${API_BASE}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    showError('username', data.message || 'Invalid credentials');
+                    return;
+                }
+
+                // Save tokens
+                localStorage.setItem('accessToken', data.token);
+                localStorage.setItem('refreshToken', data.refreshToken);
+                loginState.user = data.user;
+
+                showSuccess('Welcome, ' + (data.user?.username || 'User') + '! Redirecting...');
+            } catch (e) {
+                showError('username', 'Network error: ' + e.message);
+            } finally {
+                spinner.classList.remove('active');
+            }
+        }
+
+        async function sendMobileOtp() {
+            clearError('mobile');
+
+            const mobile = document.getElementById('mobile').value.trim();
+
+            if (!mobile || !/^\d{10}$/.test(mobile)) {
+                showError('mobile', 'Mobile must be exactly 10 digits');
+                return;
+            }
+
+            const spinner = document.getElementById('spinner-otp-send');
+            spinner.classList.add('active');
+
+            try {
+                const response = await fetch(`${API_BASE}/auth/send-otp`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ mobile })
+                });
+
+                if (!response.ok) {
+                    showError('mobile', 'Failed to send OTP');
+                    return;
+                }
+
+                // Move to OTP entry
+                loginState.mobile = mobile;
+                document.getElementById('mobile-step1').style.display = 'none';
+                document.getElementById('mobile-step2').style.display = 'block';
+            } catch (e) {
+                showError('mobile', 'Network error: ' + e.message);
+            } finally {
+                spinner.classList.remove('active');
+            }
+        }
+
+        async function verifyMobileOtp() {
+            clearError('mobileOtp');
+
+            const otp = document.getElementById('mobileOtp').value.trim();
+
+            if (!otp || !/^\d{6}$/.test(otp)) {
+                showError('mobileOtp', 'OTP must be exactly 6 digits');
+                return;
+            }
+
+            const spinner = document.getElementById('spinner-otp-verify');
+            spinner.classList.add('active');
+
+            try {
+                const response = await fetch(`${API_BASE}/auth/verify-otp`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ mobile: loginState.mobile, otp })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    showError('mobileOtp', data.message || 'Invalid OTP');
+                    return;
+                }
+
+                // Save tokens
+                localStorage.setItem('accessToken', data.token);
+                localStorage.setItem('refreshToken', data.refreshToken);
+                loginState.user = data.user;
+
+                showSuccess('OTP Verified! Welcome back!');
+            } catch (e) {
+                showError('mobileOtp', 'Network error: ' + e.message);
+            } finally {
+                spinner.classList.remove('active');
+            }
+        }
+
+        async function loginWithMpin() {
+            clearError('mpinMobile');
+            clearError('mpin');
+
+            const mobile = document.getElementById('mpinMobile').value.trim();
+            const mpin = document.getElementById('mpin').value;
+
+            if (!mobile || !/^\d{10}$/.test(mobile)) {
+                showError('mpinMobile', 'Mobile must be exactly 10 digits');
+                return;
+            }
+            if (!mpin || !/^\d{4,6}$/.test(mpin)) {
+                showError('mpin', 'MPIN must be 4-6 digits');
+                return;
+            }
+
+            const spinner = document.getElementById('spinner-mpin');
+            spinner.classList.add('active');
+
+            try {
+                const response = await fetch(`${API_BASE}/auth/login-mpin`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ mobile, mpin })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    showError('mpin', data.message || 'Invalid MPIN');
+                    return;
+                }
+
+                // Save tokens
+                localStorage.setItem('accessToken', data.token);
+                localStorage.setItem('refreshToken', data.refreshToken);
+                loginState.user = data.user;
+
+                showSuccess('MPIN verified! Welcome back!');
+            } catch (e) {
+                showError('mpin', 'Network error: ' + e.message);
+            } finally {
+                spinner.classList.remove('active');
+            }
+        }
+
+        function showSuccess(message) {
+            document.querySelectorAll('.form-container').forEach(el => el.classList.remove('active'));
+            document.getElementById('successScreen').classList.add('active');
+            document.getElementById('successDetails').textContent = message + '\nRedirecting to dashboard in 3 seconds...';
+
+            // Redirect after 3 seconds
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 3000);
+        }
+
+        // Focus on first input on load
+        document.getElementById('username').focus();
+    </script>
+</body>
+</html>

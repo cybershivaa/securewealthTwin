@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PSB Digital - Punjab & Sind Bank</title>
+  
+  <!-- CSS Design System -->
+  <link rel="stylesheet" href="css/psb-app.css">
+  
+  <!-- Font Awesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Main Phone Container -->
+  <div class="phone-container">
+    
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 1: LANGUAGE SELECTION
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-1" class="screen">
+      <div class="screen-body">
+        <div class="welcome-hero" style="margin: -24px -20px 24px -20px;">
+          <div class="welcome-logo">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <div class="welcome-brand">PUNJAB & SIND BANK</div>
+          <div class="welcome-subtitle">PSB Digital Mobile Banking</div>
+        </div>
+        
+        <h2 class="section-title text-center">Select Language / भाषा चुनें</h2>
+        <p class="section-subtitle text-center">Please choose your preferred language to continue</p>
+        
+        <div class="lang-grid">
+          <button class="lang-card" data-lang="en">
+            <div class="lang-card-native">English</div>
+            <div class="lang-card-en">English</div>
+          </button>
+          <button class="lang-card" data-lang="hi">
+            <div class="lang-card-native">हिन्दी</div>
+            <div class="lang-card-en">Hindi</div>
+          </button>
+          <button class="lang-card" data-lang="pa">
+            <div class="lang-card-native">ਪੰਜਾਬੀ</div>
+            <div class="lang-card-en">Punjabi</div>
+          </button>
+          <button class="lang-card" data-lang="bn">
+            <div class="lang-card-native">বাংলা</div>
+            <div class="lang-card-en">Bengali</div>
+          </button>
+          <button class="lang-card" data-lang="gu">
+            <div class="lang-card-native">ગુજરાતી</div>
+            <div class="lang-card-en">Gujarati</div>
+          </button>
+          <button class="lang-card" data-lang="ta">
+            <div class="lang-card-native">தமிழ்</div>
+            <div class="lang-card-en">Tamil</div>
+          </button>
+          <button class="lang-card" data-lang="te">
+            <div class="lang-card-native">తెలుగు</div>
+            <div class="lang-card-en">Telugu</div>
+          </button>
+          <button class="lang-card" data-lang="mr">
+            <div class="lang-card-native">मराठी</div>
+            <div class="lang-card-en">Marathi</div>
+          </button>
+          <button class="lang-card" data-lang="ml">
+            <div class="lang-card-native">മലയാളം</div>
+            <div class="lang-card-en">Malayalam</div>
+          </button>
+          <button class="lang-card" data-lang="kn">
+            <div class="lang-card-native">ಕನ್ನಡ</div>
+            <div class="lang-card-en">Kannada</div>
+          </button>
+          <button class="lang-card" data-lang="as">
+            <div class="lang-card-native">অসমীয়া</div>
+            <div class="lang-card-en">Assamese</div>
+          </button>
+          <button class="lang-card" data-lang="or">
+            <div class="lang-card-native">ଓଡ଼ିଆ</div>
+            <div class="lang-card-en">Odia</div>
+          </button>
+        </div>
+      </div>
+      
+      <div class="bottom-actions">
+        <button id="lang-continue" class="btn btn-primary" disabled>
+          Continue <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 2: WELCOME SCREEN
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-2" class="screen active">
+      <div class="screen-body">
+        <div class="welcome-hero" style="margin: -24px -20px 24px -20px; padding-bottom: 50px;">
+          <div class="welcome-logo">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <div class="welcome-brand">PSB <span>DIGITAL</span></div>
+          <h1 class="welcome-title">Welcome</h1>
+          <p class="welcome-subtitle">Secure Banking, Payments & Investments</p>
+        </div>
+
+        <div class="illustration-box">
+          <i class="fa-solid fa-shield-halved" style="color: var(--primary-green);"></i>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary mb-lg" data-nav-to="screen-1">
+            <i class="fa-solid fa-user-plus"></i> Register Now
+          </button>
+          <button class="btn btn-outline" data-nav-to="screen-16">
+            <i class="fa-solid fa-right-to-bracket"></i> Existing Customer Login
+          </button>
+        </div>
+        
+        <p class="text-center mt-xl">
+          <a class="text-link" href="#" data-nav-to="screen-11">
+            Other Bank Customer? Register for UPI
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 3: CHOOSE REGISTRATION METHOD
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-3" class="screen">
+      <div class="psb-header">
+        <button class="psb-header-icon" data-nav-back><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="psb-header-text">
+          <span class="psb-header-title">Registration</span>
+          <span class="psb-header-sub">Choose Method</span>
+        </div>
+      </div>
+      
+      <div class="progress-bar"><div class="progress-fill" style="width: 10%"></div></div>
+
+      <div class="screen-body">
+        <h2 class="section-title">Select Registration Method</h2>
+        <p class="section-subtitle">Choose how you want to set up your PSB Digital Mobile banking account</p>
+
+        <div class="card method-option-card" data-method="atm">
+          <div class="card-row">
+            <div class="card-icon"><i class="fa-solid fa-credit-card" style="color: var(--primary-green);"></i></div>
+            <div class="card-info">
+              <div class="card-title">Register using ATM Card</div>
+              <div class="card-desc">Requires active debit card details and PIN. Set up credentials instantly.</div>
+            </div>
+            <div class="card-radio"></div>
+          </div>
+        </div>
+
+        <div class="card method-option-card" data-method="account">
+          <div class="card-row">
+            <div class="card-icon"><i class="fa-solid fa-file-invoice" style="color: var(--primary-green);"></i></div>
+            <div class="card-info">
+              <div class="card-title">Register using Account Details</div>
+              <div class="card-desc">Requires Branch Activation Code or Aadhaar OTP verification.</div>
+            </div>
+            <div class="card-radio"></div>
+          </div>
+        </div>
+
+        <div class="security-badge">
+          <i class="fa-solid fa-lock"></i> 256-Bit SSL Encrypted & Secure
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <button id="method-continue" class="btn btn-primary" disabled>Continue</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 4: SELECT SIM
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-4" class="screen">
+      <div class="psb-header">
+        <button class="psb-header-icon" data-nav-back><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="psb-header-text">
+          <span class="psb-header-title">Verification</span>
+          <span class="psb-header-sub">Select SIM Card</span>
+        </div>
+      </div>
+      
+      <div class="progress-bar"><div class="progress-fill" style="width: 20%"></div></div>
+
+      <div class="screen-body">
+        <h2 class="section-title">Select SIM Card</h2>
+        <p class="section-subtitle">Choose the SIM slot containing your bank-registered mobile number</p>
+
+        <div class="card sim-card" data-sim="sim1">
+          <div class="card-row">
+            <div class="card-icon"><i class="fa-solid fa-sim-card" style="color: var(--primary-green);"></i></div>
+            <div class="card-info">
+              <div class="card-title">SIM 1 (Jio Digital)</div>
+              <div class="card-desc">+91 ******4819</div>
+            </div>
+            <div class="card-radio"></div>
+          </div>
+        </div>
+
+        <div class="card sim-card" data-sim="sim2">
+          <div class="card-row">
+            <div class="card-icon"><i class="fa-solid fa-sim-card" style="color: var(--primary-green);"></i></div>
+            <div class="card-info">
+              <div class="card-title">SIM 2 (Airtel India)</div>
+              <div class="card-desc">+91 ******9203</div>
+            </div>
+            <div class="card-radio"></div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <i class="fa-solid fa-circle-info info-box-icon"></i>
+          <div class="info-box-text">
+            We will send a silent SMS from the selected SIM to authenticate your identity. Standard carrier SMS charges apply.
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <button id="sim-continue" class="btn btn-primary" disabled>Send SMS</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 5: CONSENT SCREEN
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-5" class="screen">
+      <div class="psb-header">
+        <button class="psb-header-icon" data-nav-back><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="psb-header-text">
+          <span class="psb-header-title">Terms</span>
+          <span class="psb-header-sub">Customer Consent</span>
+        </div>
+      </div>
+      
+      <div class="progress-bar"><div class="progress-fill" style="width: 30%"></div></div>
+
+      <div class="screen-body">
+        <h2 class="section-title">Customer Consent</h2>
+        <p class="section-subtitle">Please read and accept terms before creating banking profile</p>
+
+        <div class="terms-box">
+          <strong>1. Acceptance of Terms:</strong> By registering, you agree to comply with all rules and regulations of Punjab & Sind Bank's electronic and mobile channels.<br><br>
+          <strong>2. Secure Credentials:</strong> You are solely responsible for keeping your Username, Password, MPIN, and transaction details confidential. Bank representatives will never ask for your passwords.<br><br>
+          <strong>3. Transaction Authorizations:</strong> Mobile transactions are binding. Always verify beneficiary account info before clicking Submit.<br><br>
+          <strong>4. Data Privacy:</strong> PSB Digital collects device parameters (SIM identification) to secure against credential sharing and fraudulent app clones.
+        </div>
+
+        <div id="consent-checkbox-row" class="checkbox-row">
+          <div class="checkbox-box"><i class="fa-solid fa-check"></i></div>
+          <div class="checkbox-label">
+            I accept all Terms & Conditions and authorize Punjab & Sind Bank to authenticate my device profile.
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <button id="consent-continue" class="btn btn-primary" disabled>Accept & Proceed</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 6: ACCOUNT VERIFICATION
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-6" class="screen">
+      <div class="psb-header">
+        <button class="psb-header-icon" data-nav-back><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="psb-header-text">
+          <span class="psb-header-title">Details</span>
+          <span class="psb-header-sub">Verify Account</span>
+        </div>
+      </div>
+      
+      <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
+
+      <div class="screen-body">
+        <h2 class="section-title">Verify Account Details</h2>
+        <p class="section-subtitle">Enter account number and date of birth as registered with Punjab & Sind Bank</p>
+
+        <div class="form-group">
+          <label class="form-label" for="acc-num">Account Number</label>
+          <div class="input-wrapper">
+            <input type="password" id="acc-num" class="form-input" placeholder="Enter Account Number" maxlength="16">
+            <button id="toggle-acc-vis" class="input-icon-right" type="button">🔒</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="dob">Date of Birth</label>
+          <input type="date" id="dob" class="form-input">
+        </div>
+
+        <div class="info-box green">
+          <i class="fa-solid fa-shield-halved info-box-icon" style="color: var(--success);"></i>
+          <div class="info-box-text" style="color: var(--success);">
+            Details are matched directly with RBI core database parameters for absolute safety.
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <button id="acc-verify-btn" class="btn btn-primary" disabled>Verify Details</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 7: CUSTOMER INFORMATION REVIEW
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-7" class="screen">
+      <div class="psb-header">
+        <button class="psb-header-icon" data-nav-back><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="psb-header-text">
+          <span class="psb-header-title">Review</span>
+          <span class="psb-header-sub">Customer Info</span>
+        </div>
+      </div>
+      
+      <div class="progress-bar"><div class="progress-fill" style="width: 45%"></div></div>
+
+      <div class="screen-body">
+        <div class="success-circle"><i class="fa-solid fa-circle-check"></i></div>
+        
+        <h2 class="section-title text-center">Account Details Verified!</h2>
+        <p class="section-subtitle text-center">Please verify if the customer details match your identity</p>
+
+        <div class="verified-card">
+          <div class="verified-row">
+            <span class="verified-label">Customer Name</span>
+            <span id="review-cust-name" class="verified-value">RAHUL KUMAR SINGH</span>
+          </div>
+          <div class="verified-row">
+            <span class="verified-label">CIF Number</span>
+            <span id="review-cif" class="verified-value">904827156</span>
+          </div>
+          <div class="verified-row">
+            <span class="verified-label">Home Branch</span>
+            <span id="review-branch" class="verified-value">PARLIAMENT STREET BRANCH, NEW DELHI</span>
+          </div>
+        </div>
+
+        <p class="text-center mt-lg">
+          <a class="text-link text-danger" href="#" data-nav-to="screen-6">Not you? Re-enter details</a>
+        </p>
+      </div>
+
+      <div class="bottom-actions">
+        <button class="btn btn-primary" data-nav-to="screen-8">Correct, Proceed</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 8: TRANSACTION RIGHTS
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-8" class="screen">
+      <div class="psb-header">
+        <button class="psb-header-icon" data-nav-back><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="psb-header-text">
+          <span class="psb-header-title">Access</span>
+          <span class="psb-header-sub">Transaction Rights</span>
+        </div>
+      </div>
+      
+      <div class="progress-bar"><div class="progress-fill" style="width: 50%"></div></div>
+
+      <div class="screen-body">
+        <h2 class="section-title">Select Access Level</h2>
+        <p class="section-subtitle">Define the level of operations you want to execute using this app</p>
+
+        <div class="rights-card rights-option-card selected" data-rights="full">
+          <div class="rights-icon full"><i class="fa-solid fa-money-bill-transfer" style="color: var(--success);"></i></div>
+          <div class="card-info">
+            <div class="card-title">Full Transactions</div>
+            <div class="card-desc">Transfer funds, open FDs, pay utility bills, order cheque books, and configure profile parameters. (Recommended)</div>
+          </div>
+        </div>
+
+        <div class="rights-card rights-option-card" data-rights="limited">
+          <div class="rights-icon limited"><i class="fa-solid fa-chart-line" style="color: #FFC107;"></i></div>
+          <div class="card-info">
+            <div class="card-title">Limited Transactions</div>
+            <div class="card-desc">Transfer within own accounts, view balances, download statements. Utility bills up to ₹5000 only.</div>
+          </div>
+        </div>
+
+        <div class="rights-card rights-option-card" data-rights="view">
+          <div class="rights-icon view"><i class="fa-solid fa-eye" style="color: #1E88E5;"></i></div>
+          <div class="card-info">
+            <div class="card-title">View Only Access</div>
+            <div class="card-desc">Only inspect ledger accounts, credit profiles, deposits, and statements. No cash transfers allowed.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <button id="rights-continue" class="btn btn-primary">Save Access Profile</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 9: CREATE CREDENTIALS
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-9" class="screen">
+      <div class="psb-header">
+        <button class="psb-header-icon" data-nav-back><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="psb-header-text">
+          <span class="psb-header-title">Security</span>
+          <span class="psb-header-sub">Set Credentials</span>
+        </div>
+      </div>
+      
+      <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
+
+      <div class="screen-body">
+        <h2 class="section-title">Create Internet Credentials</h2>
+        <p class="section-subtitle">Set up username and strong password for secure digital portal login</p>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-username">Choose Username</label>
+          <div class="input-wrapper" style="display: flex; gap: 8px;">
+            <input type="text" id="reg-username" class="form-input" placeholder="Min 5 characters" style="flex: 1;">
+            <button id="check-username-btn" class="btn btn-secondary btn-sm" style="width: auto; padding: 0 16px;" type="button">Check</button>
+          </div>
+          <div id="username-feedback" class="form-hint">Check availability before continuing.</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-password">Internet Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="reg-password" class="form-input" placeholder="Set password">
+            <button class="input-icon-right pwd-toggle-btn" type="button">🔒</button>
+          </div>
+          
+          <div class="mt-sm">
+            <div class="strength-bar">
+              <div class="strength-segment"></div>
+              <div class="strength-segment"></div>
+              <div class="strength-segment"></div>
+              <div class="strength-segment"></div>
+            </div>
+            <div class="strength-label">Password Strength: <span id="strength-label">Too Weak</span></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-confirm-password">Re-enter Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="reg-confirm-password" class="form-input" placeholder="Confirm password">
+            <button class="input-icon-right pwd-toggle-btn" type="button">🔒</button>
+          </div>
+        </div>
+
+        <div class="pwd-rules">
+          <div id="rule-len" class="pwd-rule"><span class="pwd-rule-icon">•</span> At least 8 characters</div>
+          <div id="rule-upper" class="pwd-rule"><span class="pwd-rule-icon">•</span> At least one UPPERCASE letter</div>
+          <div id="rule-lower" class="pwd-rule"><span class="pwd-rule-icon">•</span> At least one lowercase letter</div>
+          <div id="rule-num" class="pwd-rule"><span class="pwd-rule-icon">•</span> At least one numeric digit (0-9)</div>
+          <div id="rule-spec" class="pwd-rule"><span class="pwd-rule-icon">•</span> One special symbol (@, $, #, !, etc.)</div>
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <button id="creds-continue" class="btn btn-primary" disabled>Save Credentials</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 10: CREATE MPIN
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-10" class="screen">
+      <div class="psb-header">
+        <button class="psb-header-icon" data-nav-back><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="psb-header-text">
+          <span class="psb-header-title">Quick Pin</span>
+          <span class="psb-header-sub">Generate MPIN</span>
+        </div>
+      </div>
+      
+      <div class="progress-bar"><div class="progress-fill" style="width: 70%"></div></div>
+
+      <div class="screen-body">
+        <h2 id="mpin-title" class="section-title text-center">Enter a 4-Digit MPIN</h2>
+        <p class="section-subtitle text-center">Set up a quick MPIN to login fast without typing password every time</p>
+
+        <div id="mpin-dots" class="pin-dots">
+          <div class="pin-dot"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-dot"></div>
+        </div>
+
+        <div class="keypad">
+          <button class="keypad-key" data-val="1">1</button>
+          <button class="keypad-key" data-val="2">2</button>
+          <button class="keypad-key" data-val="3">3</button>
+          <button class="keypad-key" data-val="4">4</button>
+          <button class="keypad-key" data-val="5">5</button>
+          <button class="keypad-key" data-val="6">6</button>
+          <button class="keypad-key" data-val="7">7</button>
+          <button class="keypad-key" data-val="8">8</button>
+          <button class="keypad-key" data-val="9">9</button>
+          <button class="keypad-key empty"></button>
+          <button class="keypad-key" data-val="0">0</button>
+          <button class="keypad-key backspace" data-val="backspace"><i class="fa-solid fa-delete-left"></i></button>
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <button id="mpin-continue" class="btn btn-primary" data-nav-to="screen-11" disabled>Save MPIN</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 11: SET UPI PIN (OTP & CARD)
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-11" class="screen">
+      <div class="psb-header">
+        <button class="psb-header-icon" data-nav-back><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="psb-header-text">
+          <span class="psb-header-title">Setup UPI</span>
+          <span class="psb-header-sub">Verify Debit Card</span>
+        </div>
+      </div>
+      
+      <div class="progress-bar"><div class="progress-fill" style="width: 80%"></div></div>
+
+      <div class="screen-body">
+        <div id="card-inputs-panel">
+          <h2 class="section-title">Enter Debit Card Info</h2>
+          <p class="section-subtitle">Provide details of your active Punjab & Sind ATM Card</p>
+
+          <div class="form-group">
+            <label class="form-label" for="debit-card-last6">Last 6 Digits of Debit Card</label>
+            <input type="text" id="debit-card-last6" class="form-input" placeholder="e.g. 123456" maxlength="6" inputmode="numeric">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="debit-expiry">Expiry Date</label>
+            <input type="text" id="debit-expiry" class="form-input" placeholder="MM/YY" maxlength="5" inputmode="numeric">
+          </div>
+
+          <button id="card-verify-btn" class="btn btn-primary mt-lg" disabled>Send verification OTP</button>
+        </div>
+
+        <div id="otp-verification-panel" class="hidden">
+          <h2 class="section-title">Enter OTP Code</h2>
+          <p class="section-subtitle">We sent a 6-digit OTP code to your registered mobile number</p>
+
+          <div class="otp-row">
+            <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
+            <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
+            <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
+            <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
+            <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
+            <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
+          </div>
+
+          <div id="otp-timer-11" class="otp-timer">Resend OTP in <span>0:59</span></div>
+          <p class="text-center"><a href="#" id="resend-btn-11" class="text-link" style="display: none;">Resend OTP Code</a></p>
+
+          <button id="upi-continue" class="btn btn-primary mt-xl" disabled>Verify OTP & Set UPI PIN</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 12: PAN VERIFICATION
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-12" class="screen">
+      <div class="psb-header">
+        <button class="psb-header-icon" data-nav-back><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="psb-header-text">
+          <span class="psb-header-title">Identity</span>
+          <span class="psb-header-sub">PAN Card</span>
+        </div>
+      </div>
+      
+      <div class="progress-bar"><div class="progress-fill" style="width: 85%"></div></div>
+
+      <div class="screen-body">
+        <h2 class="section-title">Verify PAN Details</h2>
+        <p class="section-subtitle">Enter your Permanent Account Number (PAN) for KYC linkage</p>
+
+        <div class="form-group">
+          <label class="form-label" for="pan-number">PAN Card Number</label>
+          <input type="text" id="pan-number" class="form-input" placeholder="ABCDE1234F" maxlength="10" style="text-transform: uppercase;">
+        </div>
+
+        <div class="info-box">
+          <i class="fa-solid fa-circle-info info-box-icon"></i>
+          <div class="info-box-text">
+            PAN is mandatory as per RBI regulations for checking high volume fund transactions.
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <button id="pan-verify-btn" class="btn btn-primary" disabled>Verify PAN Card</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 13: KYC VERIFICATION METHOD
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-13" class="screen">
+      <div class="psb-header">
+        <button class="psb-header-icon" data-nav-back><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="psb-header-text">
+          <span class="psb-header-title">Identity</span>
+          <span class="psb-header-sub">KYC Setup</span>
+        </div>
+      </div>
+      
+      <div class="progress-bar"><div class="progress-fill" style="width: 90%"></div></div>
+
+      <div class="screen-body">
+        <h2 class="section-title">Choose KYC Method</h2>
+        <p class="section-subtitle">Authenticate your bio-details using one of the channels below</p>
+
+        <div class="card kyc-option-card selected" data-method="aadhaar">
+          <div class="card-row">
+            <div class="card-icon"><i class="fa-solid fa-id-card" style="color: var(--primary-green);"></i></div>
+            <div class="card-info">
+              <div class="card-title">Instant Aadhaar OTP</div>
+              <div class="card-desc">Verify instantly using biometric mapping connected with UIDAI databases. (Fastest)</div>
+            </div>
+            <div class="card-radio"></div>
+          </div>
+        </div>
+
+        <div class="card kyc-option-card" data-method="video">
+          <div class="card-row">
+            <div class="card-icon"><i class="fa-solid fa-video" style="color: var(--primary-green);"></i></div>
+            <div class="card-info">
+              <div class="card-title">Video KYC Process</div>
+              <div class="card-desc">Schedule a video call with a bank officer. Takes around 5-10 minutes.</div>
+            </div>
+            <div class="card-radio"></div>
+          </div>
+        </div>
+
+        <div class="card kyc-option-card" data-method="branch">
+          <div class="card-row">
+            <div class="card-icon"><i class="fa-solid fa-building" style="color: var(--primary-green);"></i></div>
+            <div class="card-info">
+              <div class="card-title">Branch Verification</div>
+              <div class="card-desc">Visit any near Punjab & Sind branch with physical documents to confirm.</div>
+            </div>
+            <div class="card-radio"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <button id="kyc-continue" class="btn btn-primary">Process KYC</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 14: BIOMETRIC SETUP
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-14" class="screen">
+      <div class="psb-header">
+        <button class="psb-header-icon" data-nav-back><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="psb-header-text">
+          <span class="psb-header-title">Security</span>
+          <span class="psb-header-sub">Biometrics Setup</span>
+        </div>
+      </div>
+      
+      <div class="progress-bar"><div class="progress-fill" style="width: 95%"></div></div>
+
+      <div class="screen-body text-center">
+        <h2 class="section-title">Enable Touch ID / Face ID</h2>
+        <p class="section-subtitle">Use your mobile fingerprint scanner for quicker authorization of logins and small UPI payments</p>
+
+        <div class="fingerprint-anim" style="margin: 40px auto; background: rgba(14,61,46,0.06); width: 120px; height: 120px; font-size: 56px;">
+          <i class="fa-solid fa-fingerprint" style="color: var(--primary-green);"></i>
+        </div>
+
+        <div class="info-box green">
+          <i class="fa-solid fa-shield-halved info-box-icon" style="color: var(--success);"></i>
+          <div class="info-box-text" style="color: var(--success); text-align: left;">
+            Biometric descriptors are locked locally inside your phone's secure enclave and never shared with the bank servers.
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <button id="bio-skip" class="btn btn-secondary" style="flex: 1;">Skip Setup</button>
+        <button id="bio-enable" class="btn btn-primary" style="flex: 2;">Enable Biometrics</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 15: REGISTRATION SUCCESS
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-15" class="screen">
+      <div class="screen-body text-center" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 60px;">
+        <div class="big-success"><i class="fa-solid fa-circle-check"></i></div>
+        
+        <h1 class="section-title" style="font-size: 28px; margin-top: var(--sp-lg);">Profile Created Successfully!</h1>
+        <p class="section-subtitle" style="font-size: var(--fs-base); max-width: 290px;">
+          Your Punjab & Sind Bank Digital Banking account is active. You can now use MPIN and Username to access secure dashboards.
+        </p>
+
+        <div class="verified-card" style="width: 100%; text-align: left; margin-top: var(--sp-lg);">
+          <div class="verified-row">
+            <span class="verified-label">Registered Mobile</span>
+            <span class="verified-value">+91 ******4819</span>
+          </div>
+          <div class="verified-row">
+            <span class="verified-label">Created Username</span>
+            <span class="verified-value">rahul.singh</span>
+          </div>
+          <div class="verified-row">
+            <span class="verified-label">Default Account</span>
+            <span class="verified-value">10398271822</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <button class="btn btn-primary" data-nav-to="screen-16">
+          Proceed to Login <i class="fa-solid fa-right-to-bracket"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 16: LOGIN SCREEN
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-16" class="screen">
+      <div class="screen-body">
+        <div class="welcome-hero" style="margin: -24px -20px 24px -20px;">
+          <div class="welcome-logo">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <div class="welcome-brand">PSB <span>DIGITAL</span></div>
+          <div class="welcome-subtitle">Punjab & Sind Bank Mobile banking</div>
+        </div>
+
+        <div class="login-tabs">
+          <button class="login-tab active" data-tab="quick">Quick Access</button>
+          <button class="login-tab" data-tab="credentials">Credentials</button>
+        </div>
+
+        <!-- Tab 1: Quick Access Panel -->
+        <div id="login-quick-panel">
+          <div id="login-quick-methods">
+            <p class="section-subtitle text-center">Choose quick verification to authenticate login</p>
+            
+            <div class="method-card login-method-card" data-login-method="mpin">
+              <div class="method-icon"><i class="fa-solid fa-key"></i></div>
+              <div class="method-title">Enter 4-Digit MPIN</div>
+            </div>
+
+            <div class="method-card login-method-card" data-login-method="biometrics">
+              <div class="method-icon"><i class="fa-solid fa-fingerprint"></i></div>
+              <div class="method-title">Biometric Touch ID</div>
+            </div>
+
+            <div class="method-card login-method-card" data-login-method="otp">
+              <div class="method-icon"><i class="fa-solid fa-message"></i></div>
+              <div class="method-title">Get Mobile OTP Code</div>
+            </div>
+          </div>
+
+          <!-- MPIN Input View inside Quick Access -->
+          <div id="login-mpin-panel" class="hidden">
+            <h3 class="section-title text-center">Verify MPIN</h3>
+            <p class="section-subtitle text-center">Enter your 4-digit mobile access code</p>
+
+            <div id="login-mpin-dots" class="pin-dots" style="margin-bottom: 24px;">
+              <div class="pin-dot"></div>
+              <div class="pin-dot"></div>
+              <div class="pin-dot"></div>
+              <div class="pin-dot"></div>
+            </div>
+
+            <div class="keypad" style="margin-bottom: 24px;">
+              <button class="keypad-key" data-val="1">1</button>
+              <button class="keypad-key" data-val="2">2</button>
+              <button class="keypad-key" data-val="3">3</button>
+              <button class="keypad-key" data-val="4">4</button>
+              <button class="keypad-key" data-val="5">5</button>
+              <button class="keypad-key" data-val="6">6</button>
+              <button class="keypad-key" data-val="7">7</button>
+              <button class="keypad-key" data-val="8">8</button>
+              <button class="keypad-key" data-val="9">9</button>
+              <button class="keypad-key" onclick="cancelLoginMpin()"><i class="fa-solid fa-circle-xmark"></i></button>
+              <button class="keypad-key" data-val="0">0</button>
+              <button class="keypad-key backspace" data-val="backspace"><i class="fa-solid fa-delete-left"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Standard Credentials Panel -->
+        <div id="login-creds-panel" class="hidden">
+          <div class="form-group">
+            <label class="form-label" for="login-username">Username</label>
+            <input type="text" id="login-username" class="form-input" placeholder="Enter username">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="login-password">Password</label>
+            <div class="input-wrapper">
+              <input type="password" id="login-password" class="form-input" placeholder="Enter password">
+              <button class="input-icon-right pwd-toggle-btn" type="button">🔒</button>
+            </div>
+          </div>
+
+          <button id="login-submit-btn" class="btn btn-primary mt-lg" disabled>Sign In</button>
+        </div>
+
+        <div class="flex-between mt-xl">
+          <a href="#" class="text-link" data-nav-to="screen-17">Forgot Password?</a>
+          <a href="#" class="text-link" data-nav-to="screen-3">New Registration</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 17: FORGOT PASSWORD
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-17" class="screen">
+      <div class="psb-header">
+        <button class="psb-header-icon" data-nav-back><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="psb-header-text">
+          <span class="psb-header-title">Forgot</span>
+          <span class="psb-header-sub">Reset Credentials</span>
+        </div>
+      </div>
+
+      <div class="screen-body">
+        <h2 class="section-title">Recover Profile Access</h2>
+        <p class="section-subtitle">Enter your bank-registered mobile number to receive security code</p>
+
+        <div class="form-group">
+          <label class="form-label" for="forgot-mobile">Mobile Number</label>
+          <div class="input-wrapper" style="display: flex; align-items: center;">
+            <span style="font-weight: 600; color: var(--text-dark); margin-right: 12px; font-size: var(--fs-base)">+91</span>
+            <input type="text" id="forgot-mobile" class="form-input" placeholder="10 Digit Number" maxlength="10" inputmode="numeric">
+          </div>
+        </div>
+
+        <button id="forgot-otp-btn" class="btn btn-primary mt-md" disabled>Send OTP</button>
+
+        <div id="forgot-otp-panel" class="hidden mt-xl">
+          <div class="divider"></div>
+          
+          <h3 class="section-title">Enter Security Code & Reset</h3>
+          <p class="section-subtitle">Define a fresh password for your account</p>
+
+          <div class="form-group">
+            <label class="form-label">6-Digit OTP</label>
+            <div class="otp-row">
+              <input type="text" class="otp-box" style="width: 40px; height: 46px;" maxlength="1" inputmode="numeric">
+              <input type="text" class="otp-box" style="width: 40px; height: 46px;" maxlength="1" inputmode="numeric">
+              <input type="text" class="otp-box" style="width: 40px; height: 46px;" maxlength="1" inputmode="numeric">
+              <input type="text" class="otp-box" style="width: 40px; height: 46px;" maxlength="1" inputmode="numeric">
+              <input type="text" class="otp-box" style="width: 40px; height: 46px;" maxlength="1" inputmode="numeric">
+              <input type="text" class="otp-box" style="width: 40px; height: 46px;" maxlength="1" inputmode="numeric">
+            </div>
+            
+            <div id="otp-timer-17" class="otp-timer">Resend OTP in <span>0:59</span></div>
+            <p class="text-center"><a href="#" id="resend-btn-17" class="text-link" style="display: none;">Resend OTP</a></p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="forgot-new-pwd">Set New Password</label>
+            <input type="password" id="forgot-new-pwd" class="form-input" placeholder="Min 8 characters">
+          </div>
+
+          <button id="forgot-reset-btn" class="btn btn-primary mt-lg">Reset Password</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 18: BIOMETRIC SCANNING OVERLAY (TRIGGER POPUP)
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="biometric-modal-overlay" class="modal-overlay">
+      <div class="modal-box">
+        <div class="fingerprint-anim">
+          <i class="fa-solid fa-fingerprint" style="color: var(--primary-green);"></i>
+        </div>
+        <h3 class="section-title">Touch ID Authentication</h3>
+        <p class="section-subtitle" style="margin-bottom: 24px;">Please place your registered finger on the fingerprint sensor</p>
+        
+        <div style="display: flex; gap: 12px;">
+          <button id="bio-cancel-btn" class="btn btn-secondary" style="flex: 1; padding: 10px;">Cancel</button>
+          <button class="btn btn-green" style="flex: 1; padding: 10px;">Retry</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 19: DASHBOARD HOME
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-19" class="screen">
+      <!-- Dashboard Top Header -->
+      <div class="dash-header">
+        <div class="flex-between">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="psb-header-logo" style="width: 32px; height: 32px; font-size: 16px;">
+              <i class="fa-solid fa-building-columns" style="color: #8B0000;"></i>
+            </div>
+            <div>
+              <div id="dash-username" class="dash-greeting" style="font-size: var(--fs-md);">HI, RAHUL 👋</div>
+              <div class="dash-subgreet" style="font-size: var(--fs-xs);">Good Morning</div>
+            </div>
+          </div>
+          <div class="psb-header-right" style="gap: 8px;">
+            <button class="psb-header-icon" style="width: 28px; height: 28px;"><i class="fa-solid fa-qrcode" style="font-size: 13px;"></i></button>
+            <button class="psb-header-icon" style="width: 28px; height: 28px;"><i class="fa-solid fa-bell" style="font-size: 13px;"></i></button>
+            <button class="psb-header-icon" style="width: 28px; height: 28px;" data-nav-to="screen-16"><i class="fa-solid fa-right-from-bracket" style="font-size: 13px;"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Balance Card -->
+      <div class="dash-banner" style="margin: -10px 16px 16px 16px; box-shadow: var(--shadow-md);">
+        <div class="flex-between">
+          <div>
+            <div style="font-size: var(--fs-xs); opacity: 0.8; text-transform: uppercase;">Savings Account</div>
+            <div style="font-size: var(--fs-sm); font-weight: 500; margin-top: 2px;">10398271822</div>
+          </div>
+          <button id="toggle-balance" style="background: none; border: none; font-size: 20px; color: var(--primary-yellow); cursor: pointer;">
+            🔒
+          </button>
+        </div>
+        <div id="account-balance" style="font-size: 28px; font-weight: 800; margin-top: 14px; color: var(--primary-yellow);">
+          ₹ ••••••••
+        </div>
+        <div style="display: flex; gap: 16px; margin-top: 16px; font-size: var(--fs-xs); opacity: 0.9;">
+          <span>Uncleared Balance: ₹0.00</span>
+          <span>•</span>
+          <span>Book Balance: ₹45,280.50</span>
+        </div>
+      </div>
+
+      <!-- Quick Actions Grid -->
+      <div class="dash-section-header">
+        <span class="dash-section-title">Quick Actions</span>
+        <button class="dash-view-all">See All</button>
+      </div>
+
+      <div class="quick-actions">
+        <button class="quick-action">
+          <div class="quick-action-icon" style="background: #E8F5E9; color: var(--success);"><i class="fa-solid fa-wallet"></i></div>
+          <span class="quick-action-label">Accounts</span>
+        </button>
+        <button class="quick-action">
+          <div class="quick-action-icon" style="background: #E3F2FD; color: #1E88E5;"><i class="fa-solid fa-money-bill-transfer"></i></div>
+          <span class="quick-action-label">Fund Transfer</span>
+        </button>
+        <button class="quick-action">
+          <div class="quick-action-icon" style="background: #FFF8E1; color: #FF9800;"><i class="fa-solid fa-paper-plane"></i></div>
+          <span class="quick-action-label">UPI Payments</span>
+        </button>
+        <button class="quick-action">
+          <div class="quick-action-icon" style="background: #F3E5F5; color: #9C27B0;"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+          <span class="quick-action-label">Bill Payments</span>
+        </button>
+        <button class="quick-action">
+          <div class="quick-action-icon" style="background: #E0F7FA; color: #00838F;"><i class="fa-solid fa-mobile-screen"></i></div>
+          <span class="quick-action-label">Mobile Recharge</span>
+        </button>
+        <button class="quick-action">
+          <div class="quick-action-icon" style="background: #FFF3E0; color: #E65100;"><i class="fa-solid fa-vault"></i></div>
+          <span class="quick-action-label">e-Deposits</span>
+        </button>
+        <button class="quick-action">
+          <div class="quick-action-icon" style="background: #FFEBEE; color: #C62828;"><i class="fa-solid fa-credit-card"></i></div>
+          <span class="quick-action-label">Manage Cards</span>
+        </button>
+        <button class="quick-action">
+          <div class="quick-action-icon" style="background: #E8EAF6; color: #283593;"><i class="fa-solid fa-gears"></i></div>
+          <span class="quick-action-label">Services</span>
+        </button>
+      </div>
+
+      <!-- Scrollable Banking Products -->
+      <div class="dash-section-header">
+        <span class="dash-section-title">Investments & Products</span>
+      </div>
+
+      <div class="banking-services">
+        <button class="service-item">
+          <div class="service-icon" style="background: #FFF8E1; color: #FFB300;"><i class="fa-solid fa-piggy-bank"></i></div>
+          <span class="service-label">Deposits</span>
+        </button>
+        <button class="service-item">
+          <div class="service-icon" style="background: #E8F5E9; color: #2E7D32;"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+          <span class="service-label">Loans</span>
+        </button>
+        <button class="service-item">
+          <div class="service-icon" style="background: #E3F2FD; color: #1565C0;"><i class="fa-solid fa-chart-pie"></i></div>
+          <span class="service-label">Mutual Funds</span>
+        </button>
+        <button class="service-item">
+          <div class="service-icon" style="background: #F3E5F5; color: #6A1B9A;"><i class="fa-solid fa-handshake-angle"></i></div>
+          <span class="service-label">Insurance</span>
+        </button>
+        <button class="service-item">
+          <div class="service-icon" style="background: #FFEBEE; color: #C62828;"><i class="fa-solid fa-ticket"></i></div>
+          <span class="service-label">Offers</span>
+        </button>
+      </div>
+
+      <!-- Recent Transactions -->
+      <div class="dash-section-header">
+        <span class="dash-section-title">Recent Transactions</span>
+        <button class="dash-view-all">View Statement</button>
+      </div>
+
+      <div id="tx-list-container" style="background: var(--white); margin: 0 16px 20px 16px; border-radius: var(--radius-lg); border: 1px solid var(--light-grey); overflow: hidden;">
+        <!-- Filled Dynamically by JS -->
+      </div>
+
+      <!-- Bottom Tab Bar -->
+      <div class="bottom-nav">
+        <button class="nav-item active">
+          <i class="fa-solid fa-house nav-icon"></i>
+          <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item">
+          <i class="fa-solid fa-money-bill nav-icon"></i>
+          <span class="nav-label">Payments</span>
+        </button>
+        <button class="nav-item">
+          <i class="fa-solid fa-credit-card nav-icon"></i>
+          <span class="nav-label">Cards</span>
+        </button>
+        <button class="nav-item">
+          <i class="fa-solid fa-tags nav-icon"></i>
+          <span class="nav-label">Offers</span>
+        </button>
+        <button class="nav-item" data-nav-to="screen-16">
+          <i class="fa-solid fa-user nav-icon"></i>
+          <span class="nav-label">Logout</span>
+        </button>
+      </div>
+    </div>
+
+  </div> <!-- End Phone Container -->
+
+  <!-- Global Spinner Loader Overlay -->
+  <div id="loading-overlay">
+    <div class="spinner"></div>
+    <div class="loader-text">Loading secure assets...</div>
+  </div>
+
+  <!-- Javascript Logic Controller -->
+  <script src="js/psb-app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSB Digital Banking - Language Selection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #1a3d3a 0%, #0f2825 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: #1a3d3a;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .language-icons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .language-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        .icon-1 { background-color: #C41E3A; }
+        .icon-2 { background-color: #FF9800; }
+        .icon-3 { background-color: #9C27B0; }
+        .icon-4 { background-color: #FFD500; color: #1a3d3a; }
+        .icon-5 { background-color: #2196F3; }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #FFD500;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .language-btn {
+            background-color: #0f3a37;
+            border: 2px solid transparent;
+            color: #ffffff;
+            padding: 20px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .language-btn:hover {
+            background-color: #0f4440;
+            transform: translateY(-2px);
+        }
+
+        .language-btn.selected {
+            border: 2px solid #FFD500;
+            background-color: #0f3a37;
+        }
+
+        .language-code {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .language-name {
+            font-size: 12px;
+            color: #b0b0b0;
+        }
+
+        .proceed-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #FFD500, #FFC500);
+            border: none;
+            color: #1a3d3a;
+            padding: 16px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: capitalize;
+        }
+
+        .proceed-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 213, 0, 0.3);
+        }
+
+        .proceed-btn:active {
+            transform: translateY(0);
+        }
+
+        .psb-logo {
+            width: 80px;
+            height: 110px;
+            margin: 0 auto 20px;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-link a {
+            color: #FFD500;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            animation: fadeIn 0.3s ease;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .language-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .language-btn {
+                padding: 15px 8px;
+                min-height: 75px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- PSB Logo -->
+        <img src="psb-logo.svg" alt="PSB Logo" class="psb-logo">
+
+        <!-- Language Icons at top -->
+        <div class="language-icons">
+            <div class="language-icon icon-1">आ</div>
+            <div class="language-icon icon-2">ह</div>
+            <div class="language-icon icon-3">ई</div>
+            <div class="language-icon icon-4">ఖ</div>
+            <div class="language-icon icon-5">A</div>
+        </div>
+
+        <!-- Heading -->
+        <h1>Greetings!</h1>
+        <p class="subtitle">Select your preferred language</p>
+
+        <!-- Language Selection Grid -->
+        <div class="language-grid" id="languageGrid">
+            <button class="language-btn selected" data-lang="en" onclick="selectLanguage('en', this)">
+                <div class="language-code">A</div>
+                <div class="language-name">English</div>
+            </button>
+            <button class="language-btn" data-lang="hi" onclick="selectLanguage('hi', this)">
+                <div class="language-code">हि</div>
+                <div class="language-name">हिंदी</div>
+            </button>
+            <button class="language-btn" data-lang="pa" onclick="selectLanguage('pa', this)">
+                <div class="language-code">ਪ</div>
+                <div class="language-name">ਪੰਜਾਬੀ</div>
+            </button>
+            <button class="language-btn" data-lang="as" onclick="selectLanguage('as', this)">
+                <div class="language-code">অ</div>
+                <div class="language-name">অসমীয়া</div>
+            </button>
+            <button class="language-btn" data-lang="bn" onclick="selectLanguage('bn', this)">
+                <div class="language-code">অ</div>
+                <div class="language-name">বাংলা</div>
+            </button>
+            <button class="language-btn" data-lang="gu" onclick="selectLanguage('gu', this)">
+                <div class="language-code">અ</div>
+                <div class="language-name">ગુજરાતી</div>
+            </button>
+            <button class="language-btn" data-lang="or" onclick="selectLanguage('or', this)">
+                <div class="language-code">ଓ</div>
+                <div class="language-name">ଓଡ଼ିଆ</div>
+            </button>
+            <button class="language-btn" data-lang="te" onclick="selectLanguage('te', this)">
+                <div class="language-code">తె</div>
+                <div class="language-name">తెలుగు</div>
+            </button>
+            <button class="language-btn" data-lang="ta" onclick="selectLanguage('ta', this)">
+                <div class="language-code">த</div>
+                <div class="language-name">தமிழ்</div>
+            </button>
+            <button class="language-btn" data-lang="kn" onclick="selectLanguage('kn', this)">
+                <div class="language-code">ಕ</div>
+                <div class="language-name">ಕನ್ನಡ</div>
+            </button>
+            <button class="language-btn" data-lang="mr" onclick="selectLanguage('mr', this)">
+                <div class="language-code">म</div>
+                <div class="language-name">मराठी</div>
+            </button>
+            <button class="language-btn" data-lang="ml" onclick="selectLanguage('ml', this)">
+                <div class="language-code">ള</div>
+                <div class="language-name">മലയാളം</div>
+            </button>
+        </div>
+
+        <!-- Proceed Button -->
+        <button class="proceed-btn" onclick="proceedWithLanguage()">Proceed</button>
+
+        <!-- Back link -->
+        <div class="back-link">
+            <a href="/" onclick="return true">← Back</a>
+        </div>
+    </div>
+
+    <script>
+        let selectedLanguage = 'en';
+
+        function selectLanguage(langCode, element) {
+            // Remove selected class from all buttons
+            const allButtons = document.querySelectorAll('.language-btn');
+            allButtons.forEach(btn => btn.classList.remove('selected'));
+            
+            // Add selected class to clicked button
+            element.classList.add('selected');
+            selectedLanguage = langCode;
+            
+            // Update proceed button text based on language
+            updateProceedButtonText(langCode);
+        }
+
+        function updateProceedButtonText(langCode) {
+            const proceedBtn = document.querySelector('.proceed-btn');
+            const proceedTexts = {
+                'en': 'Proceed',
+                'hi': 'आगे बढ़ें',
+                'pa': 'ਅੱਗੇ ਵਧੋ',
+                'as': 'এগিয়ে যান',
+                'bn': 'এগিয়ে যান',
+                'gu': 'આગળ વધો',
+                'or': 'ଏଗିଏ ଯାଆନ୍ତୁ',
+                'te': 'ముందుకు వెళ్ళండి',
+                'ta': 'முன்னெச்சரிக்கை செய்க',
+                'kn': 'ಮುಂದಿಗೆ ಹೋಗಿ',
+                'mr': 'पुढे व्हा',
+                'ml': 'മുന്നോട്ട് പോകുക'
+            };
+            proceedBtn.textContent = proceedTexts[langCode] || 'Proceed';
+        }
+
+        function proceedWithLanguage() {
+            // Store language preference
+            localStorage.setItem('selectedLanguage', selectedLanguage);
+            console.log('Selected Language:', selectedLanguage);
+
+            // Navigate to the appropriate page based on user's choice
+            const nextPage = localStorage.getItem('nextPage') || 'registration';
+            
+            if (nextPage === 'login') {
+                window.location.href = '/login.html';
+            } else {
+                // Default: go to welcome → registration
+                window.location.href = '/welcome.html';
+            }
+        }
+
+        // Initialize with English as default
+        updateProceedButtonText('en');
+    </script>
+</body>
+</html>
