@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PSB YONO – Login | Punjab Savings Bank</title>
+  <meta name="description" content="PSB YONO – Punjab Savings Bank ka secure internet banking portal. Login karke apna account manage karein." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #0f2044;
+      --navy-light: #162d5a;
+      --blue: #1565c0;
+      --blue-bright: #1976d2;
+      --gold: #f4b942;
+      --gold-light: #ffd166;
+      --white: #ffffff;
+      --glass: rgba(255,255,255,0.06);
+      --glass-border: rgba(255,255,255,0.12);
+      --text-muted: rgba(255,255,255,0.55);
+      --input-bg: rgba(255,255,255,0.08);
+      --input-border: rgba(255,255,255,0.15);
+      --danger: #ef5350;
+      --success: #66bb6a;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── ANIMATED BACKGROUND ── */
+    .bg-wrap {
+      position: fixed; inset: 0; z-index: 0;
+      background: linear-gradient(135deg, #030c1e 0%, #0a1e42 40%, #0d2a5e 70%, #0a1628 100%);
+      overflow: hidden;
+    }
+    .bg-wrap::before {
+      content: '';
+      position: absolute; inset: -50%;
+      background: radial-gradient(ellipse 60% 50% at 20% 30%, rgba(25,118,210,0.25) 0%, transparent 60%),
+                  radial-gradient(ellipse 50% 60% at 80% 70%, rgba(244,185,66,0.12) 0%, transparent 60%);
+      animation: bgPulse 8s ease-in-out infinite alternate;
+    }
+    @keyframes bgPulse {
+      from { transform: scale(1) rotate(0deg); opacity: 0.8; }
+      to   { transform: scale(1.1) rotate(3deg); opacity: 1; }
+    }
+
+    /* Floating particles */
+    .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,209,102,0.4), transparent);
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* LEFT PANEL */
+    .left-panel {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 50px;
+      text-align: center;
+      position: relative;
+    }
+
+    .left-panel::after {
+      content: '';
+      position: absolute; right: 0; top: 10%; bottom: 10%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
+    }
+
+    .bank-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      animation: slideDown 0.8s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+
+    .bank-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px;
+      box-shadow: 0 8px 32px rgba(244,185,66,0.4);
+    }
+
+    .bank-name { text-align: left; }
+    .bank-name h1 { font-size: 28px; font-weight: 800; letter-spacing: 2px; color: var(--white); }
+    .bank-name span { font-size: 11px; font-weight: 500; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
+
+    .hero-visual {
+      width: 260px; height: 260px;
+      position: relative;
+      margin: 0 auto 40px;
+      animation: slideUp 1s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+    }
+
+    .hero-ring {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background: linear-gradient(var(--navy), var(--navy)) padding-box,
+                  linear-gradient(135deg, var(--gold), var(--blue-bright)) border-box;
+      animation: rotateSlow 12s linear infinite;
+    }
+
+    .hero-ring-2 {
+      position: absolute; inset: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.08);
+      animation: rotateSlow 20s linear infinite reverse;
+    }
+
+    @keyframes rotateSlow { to { transform: rotate(360deg); } }
+
+    .hero-center {
+      position: absolute; inset: 40px;
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-center .shield { font-size: 52px; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+
+    .hero-dots {
+      position: absolute; inset: -5px;
+      border-radius: 50%;
+    }
+    .hero-dot {
+      position: absolute;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 12px var(--gold);
+    }
+
+    .left-tagline {
+      animation: fadeIn 1s ease 0.5s both;
+    }
+    .left-tagline h2 {
+      font-size: 26px; font-weight: 700;
+      background: linear-gradient(135deg, #fff, rgba(255,255,255,0.75));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    .left-tagline p {
+      font-size: 14px; color: var(--text-muted); line-height: 1.7; max-width: 300px; margin: 0 auto;
+    }
+
+    .trust-badges {
+      display: flex; gap: 24px; margin-top: 36px;
+      animation: fadeIn 1s ease 0.7s both;
+    }
+    .badge {
+      text-align: center;
+      padding: 14px 20px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+    }
+    .badge-icon { font-size: 20px; margin-bottom: 4px; }
+    .badge-label { font-size: 10px; color: var(--text-muted); letter-spacing: 0.5px; }
+
+    /* RIGHT PANEL – FORM */
+    .right-panel {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 60px;
+    }
+
+    .form-card {
+      width: 100%; max-width: 440px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      padding: 48px 44px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+      animation: slideUp 0.8s cubic-bezier(0.34,1.56,0.64,1) 0.1s both;
+    }
+
+    .form-header { margin-bottom: 36px; }
+    .form-header .welcome { font-size: 13px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+    .form-header h2 { font-size: 28px; font-weight: 700; }
+    .form-header p { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+
+    /* Tab switcher */
+    .tab-row {
+      display: flex;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 32px;
+      border: 1px solid var(--glass-border);
+    }
+    .tab-btn {
+      flex: 1; padding: 10px; border: none; background: transparent;
+      color: var(--text-muted); font-size: 13px; font-weight: 500;
+      border-radius: 10px; cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--blue), var(--blue-bright));
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(21,101,192,0.5);
+    }
+
+    .form-group { margin-bottom: 20px; position: relative; }
+
+    .form-label {
+      display: block; font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.7); margin-bottom: 8px;
+      letter-spacing: 0.5px; text-transform: uppercase;
+    }
+
+    .input-wrap { position: relative; }
+    .input-icon {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      font-size: 18px; pointer-events: none; z-index: 1;
+      color: rgba(255,255,255,0.4); transition: color 0.3s;
+    }
+    .toggle-pw {
+      position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer;
+      font-size: 18px; color: rgba(255,255,255,0.4);
+      transition: color 0.3s; padding: 0;
+    }
+    .toggle-pw:hover { color: var(--gold); }
+
+    .form-input {
+      width: 100%; padding: 14px 16px 14px 48px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 12px;
+      color: var(--white); font-size: 14px; font-family: 'Inter', sans-serif;
+      outline: none; transition: all 0.3s ease;
+      -webkit-autofill-override: none;
+    }
+    .form-input::placeholder { color: rgba(255,255,255,0.3); }
+    .form-input:focus {
+      border-color: var(--blue-bright);
+      background: rgba(255,255,255,0.1);
+      box-shadow: 0 0 0 3px rgba(25,118,210,0.2);
+    }
+    .form-input:focus + .input-icon,
+    .input-wrap:focus-within .input-icon { color: var(--blue-bright); }
+
+    .form-input.has-toggle { padding-right: 50px; }
+
+    /* Error */
+    .field-error {
+      font-size: 12px; color: var(--danger);
+      margin-top: 6px; display: none;
+      animation: shake 0.4s ease;
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+    .form-input.error { border-color: var(--danger); }
+
+    .form-options {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .remember-wrap {
+      display: flex; align-items: center; gap: 8px; cursor: pointer;
+    }
+    .remember-wrap input[type="checkbox"] { display: none; }
+    .custom-check {
+      width: 18px; height: 18px;
+      border: 2px solid var(--input-border);
+      border-radius: 5px;
+      background: var(--input-bg);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.25s;
+      font-size: 12px;
+    }
+    .remember-wrap input:checked ~ .custom-check {
+      background: var(--blue-bright); border-color: var(--blue-bright);
+    }
+    .remember-wrap input:checked ~ .custom-check::after { content: '✓'; color: #fff; }
+    .remember-label { font-size: 13px; color: var(--text-muted); }
+
+    .forgot-link {
+      font-size: 13px; color: var(--gold); text-decoration: none; font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .forgot-link:hover { opacity: 0.75; }
+
+    /* LOGIN BUTTON */
+    .btn-primary {
+      width: 100%; padding: 16px;
+      background: linear-gradient(135deg, #1565c0, #1976d2, #1565c0);
+      background-size: 200% auto;
+      border: none; border-radius: 14px;
+      color: #fff; font-size: 15px; font-weight: 700;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: all 0.4s ease;
+      position: relative; overflow: hidden;
+      letter-spacing: 0.5px;
+      box-shadow: 0 8px 32px rgba(21,101,192,0.5);
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .btn-primary:hover {
+      background-position: right center;
+      box-shadow: 0 12px 40px rgba(21,101,192,0.7);
+      transform: translateY(-2px);
+    }
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary.loading { pointer-events: none; }
+    .btn-primary .btn-text { transition: opacity 0.3s; }
+    .btn-primary .spinner {
+      display: none;
+      width: 20px; height: 20px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .btn-primary.loading .btn-text { opacity: 0; }
+    .btn-primary.loading .spinner { display: block; }
+    @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+    /* Alert box */
+    .alert-box {
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      display: none;
+      align-items: center; gap: 10px;
+      animation: fadeIn 0.4s ease;
+    }
+    .alert-box.error   { background: rgba(239,83,80,0.15); border: 1px solid rgba(239,83,80,0.3); color: #ef9a9a; display: flex; }
+    .alert-box.success { background: rgba(102,187,106,0.15); border: 1px solid rgba(102,187,106,0.3); color: #a5d6a7; display: flex; }
+
+    .divider {
+      display: flex; align-items: center; gap: 14px;
+      margin: 24px 0; color: var(--text-muted); font-size: 12px;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--glass-border);
+    }
+
+    .alt-login {
+      display: flex; gap: 12px;
+    }
+    .alt-btn {
+      flex: 1; padding: 12px;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 12px; color: var(--white); font-size: 13px; font-weight: 500;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .alt-btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
+
+    .form-footer {
+      text-align: center; margin-top: 28px;
+      font-size: 13px; color: var(--text-muted);
+    }
+    .form-footer a {
+      color: var(--gold); text-decoration: none; font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .form-footer a:hover { opacity: 0.75; }
+
+    /* Security notice */
+    .security-note {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 20px; padding: 12px 16px;
+      background: rgba(244,185,66,0.06);
+      border: 1px solid rgba(244,185,66,0.15);
+      border-radius: 10px; font-size: 11px; color: rgba(255,255,255,0.5);
+    }
+    .security-note span { font-size: 14px; }
+
+    /* ── TOP NAV ── */
+    .topnav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,22,40,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo .icon { font-size: 22px; }
+    .nav-logo .text { font-size: 16px; font-weight: 700; letter-spacing: 1px; }
+    .nav-logo .text small { display: block; font-size: 9px; letter-spacing: 2px; color: var(--gold); font-weight: 500; }
+
+    .nav-links { display: flex; gap: 24px; }
+    .nav-link {
+      font-size: 13px; color: var(--text-muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #fff; }
+
+    .nav-help {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 18px;
+      border: 1px solid var(--glass-border);
+      border-radius: 20px; font-size: 13px; color: var(--text-muted);
+      cursor: pointer; transition: all 0.3s; background: var(--glass);
+      text-decoration: none;
+    }
+    .nav-help:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Animations */
+    @keyframes slideDown { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes slideUp   { from { transform: translateY(30px);  opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .left-panel { display: none; }
+      .right-panel { padding: 20px; }
+      .topnav { padding: 14px 20px; }
+      .nav-links { display: none; }
+    }
+
+    /* OTP panel */
+    .otp-wrap {
+      display: flex; gap: 10px; justify-content: center; margin-bottom: 8px;
+    }
+    .otp-input {
+      width: 52px; height: 56px;
+      text-align: center; font-size: 22px; font-weight: 700;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 12px; color: #fff;
+      outline: none; transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+    .otp-input:focus { border-color: var(--blue-bright); box-shadow: 0 0 0 3px rgba(25,118,210,0.2); }
+  </style>
+</head>
+<body>
+
+<!-- BG + Particles -->
+<div class="bg-wrap"></div>
+<div class="particles" id="particles"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="nav-logo">
+    <span class="icon">🏦</span>
+    <div class="text">PSB YONO <small>PUNJAB SAVINGS BANK</small></div>
+  </div>
+  <div class="nav-links">
+    <a href="#" class="nav-link">Home</a>
+    <a href="#" class="nav-link">Services</a>
+    <a href="#" class="nav-link">About Us</a>
+    <a href="yono-register.html" class="nav-link">Register</a>
+  </div>
+  <a href="tel:1800-425-0000" class="nav-help">📞 1800-425-0000</a>
+</nav>
+
+<!-- MAIN PAGE -->
+<div class="page" style="padding-top: 70px;">
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <div class="bank-logo-wrap">
+      <div class="bank-icon">🏦</div>
+      <div class="bank-name">
+        <h1>PSB YONO</h1>
+        <span>Punjab Savings Bank</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-ring"></div>
+      <div class="hero-ring-2"></div>
+      <div class="hero-center">
+        <span class="shield">🛡️</span>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:4px;">256-bit SSL</p>
+      </div>
+      <!-- Orbiting dots -->
+      <div class="hero-dots" id="orbitDots"></div>
+    </div>
+
+    <div class="left-tagline">
+      <h2>Banking ab zyada aasan</h2>
+      <p>Ghar baithe apna account manage karein — transfers, bill payments, FD, loans aur bahut kuch.</p>
+    </div>
+
+    <div class="trust-badges">
+      <div class="badge">
+        <div class="badge-icon">🔒</div>
+        <div class="badge-label">Secure</div>
+      </div>
+      <div class="badge">
+        <div class="badge-icon">⚡</div>
+        <div class="badge-label">Instant</div>
+      </div>
+      <div class="badge">
+        <div class="badge-icon">🌐</div>
+        <div class="badge-label">24×7</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+    <div class="form-card">
+      <div class="form-header">
+        <div class="welcome">Swagat Hai</div>
+        <h2>Login karein</h2>
+        <p>Apne PSB YONO account mein secure access karein</p>
+      </div>
+
+      <!-- Tab -->
+      <div class="tab-row">
+        <button class="tab-btn active" id="tab-netbanking" onclick="switchTab('netbanking')">Net Banking</button>
+        <button class="tab-btn" id="tab-mobile" onclick="switchTab('mobile')">Mobile No.</button>
+        <button class="tab-btn" id="tab-otp" onclick="switchTab('otp')">OTP Login</button>
+      </div>
+
+      <!-- Alert -->
+      <div class="alert-box" id="alertBox">
+        <span id="alertIcon">⚠️</span>
+        <span id="alertMsg">Error message here</span>
+      </div>
+
+      <!-- NET BANKING FORM -->
+      <form id="form-netbanking" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label" for="userId">Customer ID / Username</label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input class="form-input" type="text" id="userId" placeholder="Apna Customer ID daalein" autocomplete="username" />
+          </div>
+          <div class="field-error" id="userId-err">Customer ID zaroori hai</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔑</span>
+            <input class="form-input has-toggle" type="password" id="password" placeholder="Apna password daalein" autocomplete="current-password" />
+            <button type="button" class="toggle-pw" id="togglePw" onclick="togglePassword('password','togglePw')">👁️</button>
+          </div>
+          <div class="field-error" id="password-err">Password zaroori hai</div>
+        </div>
+
+        <div class="form-options">
+          <label class="remember-wrap" for="rememberMe">
+            <input type="checkbox" id="rememberMe" />
+            <div class="custom-check"></div>
+            <span class="remember-label">Mujhe yaad rakho</span>
+          </label>
+          <a href="#" class="forgot-link">Password bhul gaye?</a>
+        </div>
+
+        <button class="btn-primary" type="submit" id="loginBtn">
+          <span class="btn-text">🔐 Secure Login</span>
+          <div class="spinner"></div>
+        </button>
+
+        <div class="security-note">
+          <span>🔒</span>
+          <span>Yeh website 256-bit SSL encryption se surakshit hai. Kisi ke saath password share na karein.</span>
+        </div>
+      </form>
+
+      <!-- MOBILE FORM -->
+      <form id="form-mobile" style="display:none" onsubmit="handleMobileLogin(event)">
+        <div class="form-group">
+          <label class="form-label" for="mobile">Mobile Number</label>
+          <div class="input-wrap">
+            <span class="input-icon">📱</span>
+            <input class="form-input" type="tel" id="mobile" placeholder="+91 XXXXX XXXXX" maxlength="13" />
+          </div>
+          <div class="field-error" id="mobile-err">Sahi mobile number daalein</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="mpin">MPIN (4-digit)</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔢</span>
+            <input class="form-input has-toggle" type="password" id="mpin" placeholder="MPIN daalein" maxlength="4" />
+            <button type="button" class="toggle-pw" onclick="togglePassword('mpin','mpinToggle')" id="mpinToggle">👁️</button>
+          </div>
+          <div class="field-error" id="mpin-err">4-digit MPIN zaroori hai</div>
+        </div>
+        <a href="#" class="forgot-link" style="display:block;margin-bottom:24px;">MPIN bhul gaye?</a>
+        <button class="btn-primary" type="submit">
+          <span class="btn-text">📱 Mobile Login</span>
+          <div class="spinner"></div>
+        </button>
+      </form>
+
+      <!-- OTP FORM -->
+      <form id="form-otp" style="display:none" onsubmit="handleOtpLogin(event)">
+        <div class="form-group">
+          <label class="form-label" for="otpMobile">Registered Mobile Number</label>
+          <div class="input-wrap">
+            <span class="input-icon">📲</span>
+            <input class="form-input" type="tel" id="otpMobile" placeholder="+91 XXXXX XXXXX" maxlength="13" />
+          </div>
+        </div>
+        <button type="button" class="btn-primary" style="margin-bottom:20px;" onclick="sendOtp()" id="sendOtpBtn">
+          <span class="btn-text">📨 OTP Send Karein</span>
+          <div class="spinner"></div>
+        </button>
+
+        <div id="otpSection" style="display:none">
+          <label class="form-label" style="text-align:center;display:block;margin-bottom:12px;">OTP Enter Karein</label>
+          <div class="otp-wrap" id="otpWrap">
+            <input class="otp-input" type="tel" maxlength="1" id="otp1" />
+            <input class="otp-input" type="tel" maxlength="1" id="otp2" />
+            <input class="otp-input" type="tel" maxlength="1" id="otp3" />
+            <input class="otp-input" type="tel" maxlength="1" id="otp4" />
+            <input class="otp-input" type="tel" maxlength="1" id="otp5" />
+            <input class="otp-input" type="tel" maxlength="1" id="otp6" />
+          </div>
+          <div style="text-align:center;margin-bottom:20px;font-size:13px;color:var(--text-muted)">
+            OTP nahi mila? <a href="#" class="forgot-link" onclick="resendOtp(event)">Dobara bhejein</a>
+            <span id="otpTimer" style="color:var(--gold);margin-left:4px;"></span>
+          </div>
+          <button class="btn-primary" type="submit">
+            <span class="btn-text">✅ Verify & Login</span>
+            <div class="spinner"></div>
+          </button>
+        </div>
+      </form>
+
+      <!-- DIVIDER + REGISTER LINK -->
+      <div class="divider">ya phir</div>
+      <div class="form-footer">
+        Naya account chahiye? <a href="yono-register.html">Abhi Register Karein →</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ── Particles ──
+  const particlesEl = document.getElementById('particles');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 6 + 3;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      animation-duration:${Math.random()*12+8}s;
+      animation-delay:${Math.random()*10}s;
+      opacity:0;
+    `;
+    particlesEl.appendChild(p);
+  }
+
+  // ── Orbiting dots ──
+  const orbitEl = document.getElementById('orbitDots');
+  if (orbitEl) {
+    [0,60,120,180,240,300].forEach((deg, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'hero-dot';
+      dot.style.cssText = `
+        top: 50%; left: 50%;
+        transform-origin: 0 0;
+        transform: rotate(${deg}deg) translate(125px) scale(${i%2===0?1:0.6});
+        animation: rotateSlow ${12+i*2}s linear infinite;
+        opacity:${0.5+i*0.08};
+      `;
+      orbitEl.appendChild(dot);
+    });
+  }
+
+  // ── Tab switching ──
+  function switchTab(tab) {
+    ['netbanking','mobile','otp'].forEach(t => {
+      document.getElementById('form-'+t).style.display = t===tab ? 'block' : 'none';
+      document.getElementById('tab-'+t).classList.toggle('active', t===tab);
+    });
+    hideAlert();
+  }
+
+  // ── Toggle password ──
+  function togglePassword(fieldId, btnId) {
+    const inp = document.getElementById(fieldId);
+    const btn = document.getElementById(btnId);
+    if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
+    else { inp.type = 'password'; btn.textContent = '👁️'; }
+  }
+
+  // ── Alert helpers ──
+  function showAlert(msg, type='error') {
+    const box = document.getElementById('alertBox');
+    const msgEl = document.getElementById('alertMsg');
+    const icon = document.getElementById('alertIcon');
+    box.className = 'alert-box ' + type;
+    msgEl.textContent = msg;
+    icon.textContent = type === 'success' ? '✅' : '⚠️';
+    box.style.display = 'flex';
+  }
+  function hideAlert() {
+    document.getElementById('alertBox').style.display = 'none';
+  }
+
+  // ── Field validation ──
+  function validate(id, errId, check) {
+    const inp = document.getElementById(id);
+    const err = document.getElementById(errId);
+    if (!check(inp.value)) {
+      inp.classList.add('error');
+      err.style.display = 'block';
+      return false;
+    }
+    inp.classList.remove('error');
+    err.style.display = 'none';
+    return true;
+  }
+
+  // ── Net Banking Login ──
+  function handleLogin(e) {
+    e.preventDefault(); hideAlert();
+    const v1 = validate('userId','userId-err', v => v.trim().length >= 3);
+    const v2 = validate('password','password-err', v => v.length >= 4);
+    if (!v1 || !v2) return;
+
+    const btn = document.getElementById('loginBtn');
+    btn.classList.add('loading');
+    setTimeout(() => {
+      btn.classList.remove('loading');
+      const uid = document.getElementById('userId').value.trim();
+      const pw  = document.getElementById('password').value;
+      // Demo: any credentials work
+      if (uid && pw) {
+        showAlert('✅ Login safal! Dashboard load ho raha hai...', 'success');
+        setTimeout(() => { window.location.href = 'dashboard.html'; }, 1800);
+      } else {
+        showAlert('Customer ID ya Password galat hai. Dobara koshish karein.');
+      }
+    }, 2200);
+  }
+
+  // ── Mobile Login ──
+  function handleMobileLogin(e) {
+    e.preventDefault(); hideAlert();
+    const v1 = validate('mobile','mobile-err', v => /^\+?[0-9]{10,13}$/.test(v.replace(/\s/g,'')));
+    const v2 = validate('mpin','mpin-err', v => /^\d{4}$/.test(v));
+    if (!v1 || !v2) return;
+    const btn = e.target.querySelector('.btn-primary');
+    btn.classList.add('loading');
+    setTimeout(() => {
+      btn.classList.remove('loading');
+      showAlert('Mobile Login safal!', 'success');
+      setTimeout(() => { window.location.href = 'dashboard.html'; }, 1800);
+    }, 2000);
+  }
+
+  // ── OTP Login ──
+  let otpTimerInterval;
+  function sendOtp() {
+    const mob = document.getElementById('otpMobile').value.replace(/\s/g,'');
+    if (!/^\+?[0-9]{10,13}$/.test(mob)) {
+      showAlert('Pehle sahi mobile number daalein');
+      return;
+    }
+    const btn = document.getElementById('sendOtpBtn');
+    btn.classList.add('loading');
+    setTimeout(() => {
+      btn.classList.remove('loading');
+      document.getElementById('otpSection').style.display = 'block';
+      showAlert('OTP ' + mob.slice(-4).padStart(mob.length,'*') + ' par bhej diya gaya!', 'success');
+      startOtpTimer(60);
+      document.getElementById('otp1').focus();
+    }, 1500);
+  }
+
+  function startOtpTimer(sec) {
+    clearInterval(otpTimerInterval);
+    const el = document.getElementById('otpTimer');
+    let s = sec;
+    el.textContent = '(' + s + 's)';
+    otpTimerInterval = setInterval(() => {
+      s--;
+      el.textContent = '(' + s + 's)';
+      if (s <= 0) { clearInterval(otpTimerInterval); el.textContent = ''; }
+    }, 1000);
+  }
+
+  function resendOtp(e) {
+    e.preventDefault();
+    showAlert('OTP dobara bheja gaya!', 'success');
+    startOtpTimer(60);
+  }
+
+  function handleOtpLogin(e) {
+    e.preventDefault();
+    const otp = [1,2,3,4,5,6].map(i => document.getElementById('otp'+i).value).join('');
+    if (otp.length < 6) { showAlert('Poora 6-digit OTP daalein'); return; }
+    const btn = e.target.querySelector('.btn-primary[type="submit"]');
+    if (btn) btn.classList.add('loading');
+    setTimeout(() => {
+      if (btn) btn.classList.remove('loading');
+      showAlert('OTP verified! Login safal...', 'success');
+      setTimeout(() => { window.location.href = 'dashboard.html'; }, 1800);
+    }, 1800);
+  }
+
+  // OTP auto-jump
+  document.querySelectorAll('.otp-input').forEach((inp, idx, all) => {
+    inp.addEventListener('input', () => {
+      if (inp.value && idx < all.length - 1) all[idx+1].focus();
+    });
+    inp.addEventListener('keydown', e => {
+      if (e.key === 'Backspace' && !inp.value && idx > 0) all[idx-1].focus();
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PSB Logo">
+  <!-- Yellow Background -->
+  <rect x="10" y="10" width="180" height="220" rx="12" fill="#FFD500"/>
+
+  <!-- Outer oval (subtle, optional) -->
+  <ellipse cx="100" cy="120" rx="75" ry="100" fill="none" stroke="#FFD500" stroke-width="0"/>
+
+  <!-- Stylized PSB mark in maroon - hand-drawn path to resemble original mark -->
+  <g transform="translate(60,35) scale(1.1)">
+    <path d="M14 4 C14 4 18 2 26 2 C33 2 36 6 36 12 C36 18 32 22 27 24 C22 26 18 28 18 36 L18 76" fill="none" stroke="#8A0F1A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18 52 C18 68 34 74 48 66 C56 60 56 50 48 44" fill="none" stroke="#8A0F1A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="46" cy="74" r="6" fill="#8A0F1A"/>
+  </g>
+
+  <!-- Small label below in Devanagari -->
+  <text x="100" y="240" font-family="Noto Sans Devanagari, Arial, sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#8A0F1A">पी.एस.बी</text>
+</svg>

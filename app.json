@@ -1,0 +1,48 @@
+{
+  "name": "PSBDigital",
+  "displayName": "PSB Digital",
+  "expo": {
+    "name": "PSB Digital",
+    "slug": "psb-digital",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "scheme": "psbdigital",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#1a3d3a"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTabletMode": true,
+      "bundleIdentifier": "com.psb.digital"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#1a3d3a"
+      },
+      "package": "com.psb.digital",
+      "permissions": [
+        "CAMERA",
+        "INTERNET",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "VIBRATE"
+      ]
+    },
+    "web": {},
+    "plugins": [],
+    "extra": {
+      "eas": {
+        "projectId": "5a319e58-8563-4170-980e-aa8107924cf8"
+      }
+    }
+  }
+}

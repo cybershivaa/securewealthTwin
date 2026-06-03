@@ -2,20 +2,39 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fraud.notifier">
 
+    <!-- PHONE CALL PERMISSIONS -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- SMS PERMISSIONS -->
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+    <!-- EMAIL & ACCOUNT PERMISSIONS -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
+    <!-- NOTIFICATION ACCESS -->
+    <uses-permission android:name="android.permission.NOTIFICATION_SERVICE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <!-- SYSTEM PERMISSIONS -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="Fraud Notifier"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
 
+        <!-- MAIN ACTIVITY -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -25,6 +44,7 @@
             </intent-filter>
         </activity>
 
+        <!-- CALL DETECTION RECEIVER -->
         <receiver
             android:name=".CallReceiver"
             android:exported="true">
@@ -33,11 +53,55 @@
             </intent-filter>
         </receiver>
 
+        <!-- SMS RECEIVER FOR NEW MESSAGES -->
+        <receiver
+            android:name=".SmsReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- BOOT COMPLETED RECEIVER -->
+        <receiver
+            android:name=".BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- OVERLAY SERVICE FOR REAL-TIME CALL ANALYSIS -->
         <service
             android:name=".OverlayService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="microphone" />
+
+        <!-- SMS MONITORING SERVICE -->
+        <service
+            android:name=".SmsMonitorService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- EMAIL SYNC SERVICE -->
+        <service
+            android:name=".EmailSyncService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- NOTIFICATION LISTENER SERVICE -->
+        <service
+            android:name=".NotificationListenerServiceImpl"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
 
     </application>
 </manifest>

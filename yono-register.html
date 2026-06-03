@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PSB YONO – Register | Punjab Savings Bank</title>
+  <meta name="description" content="PSB YONO mein register karein aur Punjab Savings Bank ka internet banking use karein." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #0f2044;
+      --navy-light: #162d5a;
+      --blue: #1565c0;
+      --blue-bright: #1976d2;
+      --gold: #f4b942;
+      --gold-light: #ffd166;
+      --white: #ffffff;
+      --glass: rgba(255,255,255,0.06);
+      --glass-border: rgba(255,255,255,0.12);
+      --text-muted: rgba(255,255,255,0.55);
+      --input-bg: rgba(255,255,255,0.08);
+      --input-border: rgba(255,255,255,0.15);
+      --danger: #ef5350;
+      --success: #66bb6a;
+    }
+    html, body { font-family:'Inter',sans-serif; background:var(--navy); color:var(--white); min-height:100vh; overflow-x:hidden; }
+
+    .bg-wrap {
+      position:fixed; inset:0; z-index:0;
+      background:linear-gradient(135deg,#030c1e 0%,#0a1e42 40%,#0d2a5e 70%,#0a1628 100%);
+    }
+    .bg-wrap::before {
+      content:''; position:absolute; inset:-50%;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(25,118,210,0.2) 0%,transparent 60%),
+        radial-gradient(ellipse 50% 60% at 20% 80%, rgba(244,185,66,0.1) 0%,transparent 60%);
+      animation:bgPulse 10s ease-in-out infinite alternate;
+    }
+    @keyframes bgPulse { from{opacity:.7;transform:scale(1)} to{opacity:1;transform:scale(1.1)} }
+
+    .particles { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .particle {
+      position:absolute; border-radius:50%;
+      background:radial-gradient(circle,rgba(255,209,102,0.35),transparent);
+      animation:float linear infinite;
+    }
+    @keyframes float { 0%{transform:translateY(100vh) scale(0);opacity:0} 10%{opacity:1} 90%{opacity:.6} 100%{transform:translateY(-10vh) scale(1.2);opacity:0} }
+
+    /* TOPNAV */
+    .topnav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      padding:16px 40px; display:flex; align-items:center; justify-content:space-between;
+      background:rgba(10,22,40,0.85); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--glass-border);
+    }
+    .nav-logo { display:flex; align-items:center; gap:10px; }
+    .nav-logo .icon { font-size:22px; }
+    .nav-logo .text { font-size:16px; font-weight:700; letter-spacing:1px; }
+    .nav-logo .text small { display:block; font-size:9px; letter-spacing:2px; color:var(--gold); }
+    .back-link {
+      display:flex; align-items:center; gap:8px; padding:8px 18px;
+      border:1px solid var(--glass-border); border-radius:20px;
+      font-size:13px; color:var(--text-muted); text-decoration:none;
+      background:var(--glass); transition:all .3s;
+    }
+    .back-link:hover { border-color:var(--gold); color:var(--gold); }
+
+    /* MAIN */
+    .page {
+      position:relative; z-index:1; min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      padding:100px 20px 60px;
+    }
+
+    /* Steps */
+    .reg-wrap { width:100%; max-width:580px; }
+
+    .steps-indicator {
+      display:flex; align-items:center; justify-content:center;
+      gap:0; margin-bottom:36px;
+      animation:slideDown .6s ease both;
+    }
+    .step-item {
+      display:flex; align-items:center; gap:8px;
+    }
+    .step-circle {
+      width:36px; height:36px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:13px; font-weight:700;
+      border:2px solid var(--glass-border);
+      background:var(--glass); color:var(--text-muted);
+      transition:all .4s; position:relative;
+    }
+    .step-circle.active {
+      background:linear-gradient(135deg,var(--blue),var(--blue-bright));
+      border-color:var(--blue-bright); color:#fff;
+      box-shadow:0 4px 16px rgba(21,101,192,.5);
+    }
+    .step-circle.done {
+      background:linear-gradient(135deg,var(--success),#43a047);
+      border-color:var(--success); color:#fff;
+    }
+    .step-label { font-size:11px; color:var(--text-muted); font-weight:500; }
+    .step-item.active .step-label { color:var(--white); }
+    .step-line {
+      width:50px; height:2px; margin:0 6px;
+      background:var(--glass-border); transition:background .4s;
+    }
+    .step-line.done { background:linear-gradient(to right,var(--blue),var(--gold)); }
+
+    /* CARD */
+    .form-card {
+      background:rgba(255,255,255,0.04);
+      border:1px solid var(--glass-border);
+      border-radius:28px; padding:48px 44px;
+      backdrop-filter:blur(20px);
+      box-shadow:0 32px 80px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08);
+      animation:slideUp .7s cubic-bezier(.34,1.56,.64,1) .1s both;
+    }
+
+    .step-panel { display:none; }
+    .step-panel.active { display:block; animation:fadeIn .4s ease; }
+
+    .panel-header { margin-bottom:28px; }
+    .panel-header .step-tag {
+      font-size:11px; font-weight:700; letter-spacing:2px;
+      text-transform:uppercase; color:var(--gold); margin-bottom:6px;
+    }
+    .panel-header h2 { font-size:24px; font-weight:700; margin-bottom:6px; }
+    .panel-header p { font-size:13px; color:var(--text-muted); line-height:1.6; }
+
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .form-group { margin-bottom:18px; position:relative; }
+    .form-label {
+      display:block; font-size:11px; font-weight:700;
+      color:rgba(255,255,255,.65); margin-bottom:7px;
+      letter-spacing:.5px; text-transform:uppercase;
+    }
+    .input-wrap { position:relative; }
+    .input-icon {
+      position:absolute; left:16px; top:50%; transform:translateY(-50%);
+      font-size:16px; pointer-events:none; color:rgba(255,255,255,.35);
+      transition:color .3s;
+    }
+    .form-input {
+      width:100%; padding:13px 16px 13px 46px;
+      background:var(--input-bg); border:1px solid var(--input-border);
+      border-radius:12px; color:#fff; font-size:14px; font-family:'Inter',sans-serif;
+      outline:none; transition:all .3s;
+    }
+    .form-input::placeholder { color:rgba(255,255,255,.3); }
+    .form-input:focus { border-color:var(--blue-bright); background:rgba(255,255,255,.1); box-shadow:0 0 0 3px rgba(25,118,210,.2); }
+    .form-input.error { border-color:var(--danger); }
+    .form-input:focus ~ .input-icon { color:var(--blue-bright); }
+    .input-wrap:focus-within .input-icon { color:var(--blue-bright); }
+    .toggle-pw {
+      position:absolute; right:14px; top:50%; transform:translateY(-50%);
+      background:none; border:none; cursor:pointer; font-size:16px;
+      color:rgba(255,255,255,.4); transition:color .3s; padding:0;
+    }
+    .toggle-pw:hover { color:var(--gold); }
+    .form-input.has-toggle { padding-right:46px; }
+    .field-error { font-size:11px; color:var(--danger); margin-top:5px; display:none; }
+
+    /* Password strength */
+    .pw-strength { margin-top:8px; }
+    .strength-bar { height:4px; border-radius:4px; background:rgba(255,255,255,.1); overflow:hidden; margin-bottom:4px; }
+    .strength-fill { height:100%; width:0; border-radius:4px; transition:all .4s; }
+    .strength-text { font-size:11px; color:var(--text-muted); }
+
+    /* Gender radio */
+    .radio-group { display:flex; gap:12px; }
+    .radio-opt {
+      flex:1; padding:12px; border:1px solid var(--input-border);
+      border-radius:12px; background:var(--input-bg); cursor:pointer;
+      display:flex; align-items:center; gap:8px; transition:all .3s;
+    }
+    .radio-opt:hover { border-color:var(--blue-bright); }
+    .radio-opt.selected { border-color:var(--blue-bright); background:rgba(25,118,210,.15); }
+    .radio-opt input { display:none; }
+    .radio-dot {
+      width:16px; height:16px; border-radius:50%; border:2px solid var(--input-border);
+      background:var(--input-bg); flex-shrink:0; transition:all .3s;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .radio-opt.selected .radio-dot { border-color:var(--blue-bright); background:var(--blue-bright); }
+    .radio-opt.selected .radio-dot::after { content:''; width:6px; height:6px; border-radius:50%; background:#fff; }
+    .radio-label { font-size:13px; color:var(--text-muted); }
+    .radio-opt.selected .radio-label { color:#fff; }
+
+    /* Terms */
+    .terms-wrap {
+      display:flex; align-items:flex-start; gap:10px; cursor:pointer;
+      margin-bottom:24px;
+    }
+    .terms-wrap input { display:none; }
+    .custom-check {
+      width:20px; height:20px; border:2px solid var(--input-border);
+      border-radius:5px; background:var(--input-bg); flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      transition:all .25px; margin-top:1px;
+    }
+    .terms-wrap input:checked ~ .custom-check { background:var(--blue-bright); border-color:var(--blue-bright); }
+    .terms-wrap input:checked ~ .custom-check::after { content:'✓'; color:#fff; font-size:12px; }
+    .terms-text { font-size:12px; color:var(--text-muted); line-height:1.6; }
+    .terms-text a { color:var(--gold); text-decoration:none; }
+
+    /* Buttons */
+    .btn-row { display:flex; gap:12px; }
+    .btn-primary {
+      flex:1; padding:15px; background:linear-gradient(135deg,#1565c0,#1976d2,#1565c0);
+      background-size:200% auto; border:none; border-radius:14px;
+      color:#fff; font-size:14px; font-weight:700; cursor:pointer;
+      font-family:'Inter',sans-serif; transition:all .4s;
+      position:relative; overflow:hidden; box-shadow:0 8px 28px rgba(21,101,192,.45);
+    }
+    .btn-primary:hover { background-position:right center; transform:translateY(-2px); box-shadow:0 12px 36px rgba(21,101,192,.65); }
+    .btn-primary:active { transform:translateY(0); }
+    .btn-primary.loading { pointer-events:none; }
+    .btn-primary .btn-text { transition:opacity .3s; }
+    .btn-primary .spinner {
+      display:none; width:18px; height:18px;
+      border:2px solid rgba(255,255,255,.3); border-top-color:#fff;
+      border-radius:50%; animation:spin .8s linear infinite;
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    }
+    .btn-primary.loading .btn-text { opacity:0; }
+    .btn-primary.loading .spinner { display:block; }
+    .btn-back {
+      padding:15px 20px; border:1px solid var(--glass-border); border-radius:14px;
+      background:var(--glass); color:var(--text-muted); font-size:14px; font-weight:600;
+      cursor:pointer; font-family:'Inter',sans-serif; transition:all .3s;
+    }
+    .btn-back:hover { border-color:rgba(255,255,255,.3); color:#fff; }
+
+    /* Progress dots */
+    .prog-dots { display:flex; justify-content:center; gap:6px; margin-top:24px; }
+    .prog-dot { width:8px; height:8px; border-radius:50%; background:var(--glass-border); transition:all .3s; }
+    .prog-dot.active { background:var(--gold); box-shadow:0 0 10px rgba(244,185,66,.5); width:24px; border-radius:4px; }
+
+    /* Alert */
+    .alert-box {
+      padding:14px 16px; border-radius:12px; font-size:13px;
+      margin-bottom:20px; align-items:center; gap:10px; display:none; animation:fadeIn .4s ease;
+    }
+    .alert-box.error   { background:rgba(239,83,80,.15); border:1px solid rgba(239,83,80,.3); color:#ef9a9a; display:flex; }
+    .alert-box.success { background:rgba(102,187,106,.15); border:1px solid rgba(102,187,106,.3); color:#a5d6a7; display:flex; }
+
+    /* Success screen */
+    .success-wrap { text-align:center; padding:20px 0; }
+    .success-icon { font-size:72px; margin-bottom:16px; animation:popIn .6s cubic-bezier(.34,1.56,.64,1) both; }
+    @keyframes popIn { from{transform:scale(0) rotate(-20deg);opacity:0} to{transform:scale(1) rotate(0);opacity:1} }
+    .success-wrap h2 { font-size:26px; font-weight:700; margin-bottom:10px; }
+    .success-wrap p { font-size:14px; color:var(--text-muted); line-height:1.7; margin-bottom:24px; }
+    .user-id-box {
+      background:rgba(244,185,66,.08); border:1px solid rgba(244,185,66,.25);
+      border-radius:14px; padding:16px 20px; margin:20px 0;
+    }
+    .user-id-box .uid-label { font-size:11px; color:var(--gold); letter-spacing:1px; text-transform:uppercase; margin-bottom:4px; }
+    .user-id-box .uid-val { font-size:22px; font-weight:700; letter-spacing:3px; }
+
+    /* Animations */
+    @keyframes slideDown { from{transform:translateY(-20px);opacity:0} to{transform:translateY(0);opacity:1} }
+    @keyframes slideUp   { from{transform:translateY(30px);opacity:0} to{transform:translateY(0);opacity:1} }
+    @keyframes fadeIn    { from{opacity:0} to{opacity:1} }
+    @keyframes spin      { to{transform:translate(-50%,-50%) rotate(360deg)} }
+
+    /* OTP inputs */
+    .otp-wrap { display:flex; gap:10px; justify-content:center; margin:16px 0; }
+    .otp-input {
+      width:52px; height:56px; text-align:center; font-size:22px; font-weight:700;
+      background:var(--input-bg); border:1px solid var(--input-border);
+      border-radius:12px; color:#fff; outline:none; transition:all .3s;
+      font-family:'Inter',sans-serif;
+    }
+    .otp-input:focus { border-color:var(--blue-bright); box-shadow:0 0 0 3px rgba(25,118,210,.2); }
+
+    select.form-input { appearance:none; cursor:pointer; }
+
+    /* Security badge */
+    .security-row {
+      display:flex; align-items:center; gap:20px; margin-top:20px; padding:14px 18px;
+      background:rgba(244,185,66,.05); border:1px solid rgba(244,185,66,.12);
+      border-radius:12px; flex-wrap:wrap;
+    }
+    .sec-item { display:flex; align-items:center; gap:6px; font-size:11px; color:rgba(255,255,255,.5); }
+
+    @media (max-width:600px) {
+      .form-card { padding:32px 24px; }
+      .form-row { grid-template-columns:1fr; }
+      .topnav { padding:14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-wrap"></div>
+<div class="particles" id="particles"></div>
+
+<!-- TOPNAV -->
+<nav class="topnav">
+  <div class="nav-logo">
+    <span class="icon">🏦</span>
+    <div class="text">PSB YONO <small>PUNJAB SAVINGS BANK</small></div>
+  </div>
+  <a href="yono-login.html" class="back-link">← Login par wapas jayein</a>
+</nav>
+
+<div class="page">
+  <div class="reg-wrap">
+
+    <!-- STEPS INDICATOR -->
+    <div class="steps-indicator" id="stepsIndicator">
+      <div class="step-item active" id="sitem1">
+        <div class="step-circle active" id="sc1">1</div>
+        <div class="step-label">Personal Info</div>
+      </div>
+      <div class="step-line" id="sl1"></div>
+      <div class="step-item" id="sitem2">
+        <div class="step-circle" id="sc2">2</div>
+        <div class="step-label">Account Details</div>
+      </div>
+      <div class="step-line" id="sl2"></div>
+      <div class="step-item" id="sitem3">
+        <div class="step-circle" id="sc3">3</div>
+        <div class="step-label">Security</div>
+      </div>
+      <div class="step-line" id="sl3"></div>
+      <div class="step-item" id="sitem4">
+        <div class="step-circle" id="sc4">4</div>
+        <div class="step-label">Verify</div>
+      </div>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="form-card">
+      <div class="alert-box" id="alertBox">
+        <span id="alertIcon">⚠️</span>
+        <span id="alertMsg"></span>
+      </div>
+
+      <!-- STEP 1: Personal Info -->
+      <div class="step-panel active" id="panel1">
+        <div class="panel-header">
+          <div class="step-tag">Step 1 of 4</div>
+          <h2>Aapki Personal Jankari</h2>
+          <p>Sahi details bharen — yahi aapki banking identity hogi</p>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Pehla Naam *</label>
+            <div class="input-wrap">
+              <span class="input-icon">✏️</span>
+              <input class="form-input" type="text" id="firstName" placeholder="Ramesh" />
+            </div>
+            <div class="field-error" id="firstName-err">Pehla naam zaroori hai</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Aakhiri Naam *</label>
+            <div class="input-wrap">
+              <span class="input-icon">✏️</span>
+              <input class="form-input" type="text" id="lastName" placeholder="Kumar" />
+            </div>
+            <div class="field-error" id="lastName-err">Aakhiri naam zaroori hai</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Janm Tithi *</label>
+          <div class="input-wrap">
+            <span class="input-icon">📅</span>
+            <input class="form-input" type="date" id="dob" max="" />
+          </div>
+          <div class="field-error" id="dob-err">Janm tithi zaroori hai (aap 18+ hone chahiye)</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Ling *</label>
+          <div class="radio-group" id="genderGroup">
+            <label class="radio-opt" onclick="selectGender(this,'male')">
+              <input type="radio" name="gender" value="male" />
+              <div class="radio-dot"></div>
+              <span class="radio-label">👨 Purush</span>
+            </label>
+            <label class="radio-opt" onclick="selectGender(this,'female')">
+              <input type="radio" name="gender" value="female" />
+              <div class="radio-dot"></div>
+              <span class="radio-label">👩 Mahila</span>
+            </label>
+            <label class="radio-opt" onclick="selectGender(this,'other')">
+              <input type="radio" name="gender" value="other" />
+              <div class="radio-dot"></div>
+              <span class="radio-label">⚧ Anya</span>
+            </label>
+          </div>
+          <div class="field-error" id="gender-err">Ling chunna zaroori hai</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Aadhar Number *</label>
+          <div class="input-wrap">
+            <span class="input-icon">🪪</span>
+            <input class="form-input" type="text" id="aadhar" placeholder="XXXX XXXX XXXX" maxlength="14" />
+          </div>
+          <div class="field-error" id="aadhar-err">12-digit Aadhar number zaroori hai</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">PAN Card *</label>
+          <div class="input-wrap">
+            <span class="input-icon">📋</span>
+            <input class="form-input" type="text" id="pan" placeholder="ABCDE1234F" maxlength="10" style="text-transform:uppercase" />
+          </div>
+          <div class="field-error" id="pan-err">Valid PAN number zaroori hai (e.g. ABCDE1234F)</div>
+        </div>
+
+        <button class="btn-primary" type="button" onclick="goStep(2)">
+          <span class="btn-text">Aage Badhen →</span>
+          <div class="spinner"></div>
+        </button>
+      </div>
+
+      <!-- STEP 2: Account Details -->
+      <div class="step-panel" id="panel2">
+        <div class="panel-header">
+          <div class="step-tag">Step 2 of 4</div>
+          <h2>Account & Contact Details</h2>
+          <p>Apna email, mobile aur address bharen</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email Address *</label>
+          <div class="input-wrap">
+            <span class="input-icon">📧</span>
+            <input class="form-input" type="email" id="email" placeholder="ramesh@example.com" />
+          </div>
+          <div class="field-error" id="email-err">Valid email zaroori hai</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Mobile Number *</label>
+          <div class="input-wrap">
+            <span class="input-icon">📱</span>
+            <input class="form-input" type="tel" id="regMobile" placeholder="+91 XXXXX XXXXX" maxlength="13" />
+          </div>
+          <div class="field-error" id="regMobile-err">10-digit mobile number zaroori hai</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Account Type *</label>
+          <div class="input-wrap">
+            <span class="input-icon">🏦</span>
+            <select class="form-input" id="accountType">
+              <option value="">-- Select Karein --</option>
+              <option value="savings">Savings Account</option>
+              <option value="current">Current Account</option>
+              <option value="salary">Salary Account</option>
+              <option value="fd">Fixed Deposit</option>
+            </select>
+          </div>
+          <div class="field-error" id="accountType-err">Account type chunein</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Pata (Address) *</label>
+          <div class="input-wrap">
+            <span class="input-icon">🏠</span>
+            <input class="form-input" type="text" id="address" placeholder="Ghar ka pata daalein" />
+          </div>
+          <div class="field-error" id="address-err">Pata zaroori hai</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Shahar *</label>
+            <div class="input-wrap">
+              <span class="input-icon">🌆</span>
+              <input class="form-input" type="text" id="city" placeholder="Delhi" />
+            </div>
+            <div class="field-error" id="city-err">Shahar likhein</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">PIN Code *</label>
+            <div class="input-wrap">
+              <span class="input-icon">📮</span>
+              <input class="form-input" type="text" id="pincode" placeholder="110001" maxlength="6" />
+            </div>
+            <div class="field-error" id="pincode-err">6-digit PIN code zaroori hai</div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-back" type="button" onclick="goStep(1)">← Wapas</button>
+          <button class="btn-primary" type="button" onclick="goStep(3)">
+            <span class="btn-text">Aage Badhen →</span>
+            <div class="spinner"></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Security -->
+      <div class="step-panel" id="panel3">
+        <div class="panel-header">
+          <div class="step-tag">Step 3 of 4</div>
+          <h2>Login Credentials Banayein</h2>
+          <p>Ek strong password aur MPIN set karein</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Username / Customer ID *</label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input class="form-input" type="text" id="regUsername" placeholder="Apna unique username chunein" />
+          </div>
+          <div class="field-error" id="regUsername-err">Username zaroori hai (min 6 characters)</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password *</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔑</span>
+            <input class="form-input has-toggle" type="password" id="regPassword" placeholder="Strong password banayein" oninput="checkStrength(this.value)" />
+            <button type="button" class="toggle-pw" id="rpwToggle" onclick="togglePassword('regPassword','rpwToggle')">👁️</button>
+          </div>
+          <div class="pw-strength">
+            <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+            <div class="strength-text" id="strengthText">Password ki strength yahan dikhegi</div>
+          </div>
+          <div class="field-error" id="regPassword-err">Password min 8 characters, ek number aur symbol hona chahiye</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password Confirm Karein *</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔐</span>
+            <input class="form-input has-toggle" type="password" id="confirmPassword" placeholder="Wahi password dobara likhein" />
+            <button type="button" class="toggle-pw" id="cpwToggle" onclick="togglePassword('confirmPassword','cpwToggle')">👁️</button>
+          </div>
+          <div class="field-error" id="confirmPassword-err">Dono passwords match nahi ho rahe</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">4-Digit MPIN *</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔢</span>
+            <input class="form-input has-toggle" type="password" id="regMpin" placeholder="MPIN (mobile banking ke liye)" maxlength="4" />
+            <button type="button" class="toggle-pw" id="mpinToggle" onclick="togglePassword('regMpin','mpinToggle')">👁️</button>
+          </div>
+          <div class="field-error" id="regMpin-err">4-digit MPIN zaroori hai</div>
+        </div>
+
+        <label class="terms-wrap" for="termsCheck">
+          <input type="checkbox" id="termsCheck" />
+          <div class="custom-check"></div>
+          <span class="terms-text">
+            Main <a href="#">Terms & Conditions</a> aur <a href="#">Privacy Policy</a> se sahmat hoon. Main yeh bhi manata hoon ki meri di gayi jankari sahi hai.
+          </span>
+        </label>
+
+        <div class="btn-row">
+          <button class="btn-back" type="button" onclick="goStep(2)">← Wapas</button>
+          <button class="btn-primary" type="button" onclick="goStep(4)" id="regBtn">
+            <span class="btn-text">OTP Verify Karein →</span>
+            <div class="spinner"></div>
+          </button>
+        </div>
+
+        <div class="security-row">
+          <div class="sec-item"><span>🔒</span> 256-bit SSL</div>
+          <div class="sec-item"><span>🛡️</span> RBI Compliant</div>
+          <div class="sec-item"><span>✅</span> FDIC Insured</div>
+        </div>
+      </div>
+
+      <!-- STEP 4: OTP Verification -->
+      <div class="step-panel" id="panel4">
+        <div class="panel-header">
+          <div class="step-tag">Step 4 of 4 – Last Step!</div>
+          <h2>Mobile OTP Verify Karein</h2>
+          <p id="otpDesc">Aapke registered mobile number par 6-digit OTP bheja ja raha hai...</p>
+        </div>
+
+        <div style="text-align:center;padding:10px 0;">
+          <div style="font-size:48px;margin-bottom:10px">📲</div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">
+            OTP bheja gaya: <strong id="maskedMobile" style="color:#fff"></strong>
+          </p>
+          <div class="otp-wrap" id="verifyOtpWrap">
+            <input class="otp-input" type="tel" maxlength="1" id="votp1" />
+            <input class="otp-input" type="tel" maxlength="1" id="votp2" />
+            <input class="otp-input" type="tel" maxlength="1" id="votp3" />
+            <input class="otp-input" type="tel" maxlength="1" id="votp4" />
+            <input class="otp-input" type="tel" maxlength="1" id="votp5" />
+            <input class="otp-input" type="tel" maxlength="1" id="votp6" />
+          </div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px">
+            OTP nahi mila? <a href="#" class="forgot-link" onclick="resendRegOtp(event)" style="color:var(--gold);text-decoration:none;font-weight:600">Dobara bhejein</a>
+            <span id="regTimer" style="color:var(--gold);margin-left:4px"></span>
+          </p>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-back" type="button" onclick="goStep(3)">← Wapas</button>
+          <button class="btn-primary" type="button" onclick="submitRegistration()" id="verifyBtn">
+            <span class="btn-text">✅ Account Banayein</span>
+            <div class="spinner"></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 5: Success -->
+      <div class="step-panel" id="panel5">
+        <div class="success-wrap">
+          <div class="success-icon">🎉</div>
+          <h2>Badhaai Ho!</h2>
+          <p>Aapka PSB YONO account safaltapurvak ban gaya hai.<br>Ab aap internet banking ki saari suvidhaon ka laabh utha sakte hain.</p>
+
+          <div class="user-id-box">
+            <div class="uid-label">Aapka Customer ID</div>
+            <div class="uid-val" id="generatedUid">PSB-XXXXXXXX</div>
+          </div>
+
+          <p style="font-size:12px;color:var(--text-muted);margin-bottom:24px">
+            ⚠️ Yeh Customer ID save kar lein. Login ke liye iska use hoga.
+          </p>
+
+          <a href="yono-login.html">
+            <button class="btn-primary" style="width:100%">
+              <span class="btn-text">🔐 Login Karein</span>
+              <div class="spinner"></div>
+            </button>
+          </a>
+        </div>
+      </div>
+
+      <!-- Progress dots (hidden on success) -->
+      <div class="prog-dots" id="progDots">
+        <div class="prog-dot active" id="dot1"></div>
+        <div class="prog-dot" id="dot2"></div>
+        <div class="prog-dot" id="dot3"></div>
+        <div class="prog-dot" id="dot4"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Particles
+  const pe = document.getElementById('particles');
+  for (let i=0;i<15;i++){
+    const p=document.createElement('div'); p.className='particle';
+    const s=Math.random()*6+2;
+    p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*10}s;opacity:0;`;
+    pe.appendChild(p);
+  }
+
+  // Max DOB date (18 years ago)
+  const dobInput = document.getElementById('dob');
+  const today = new Date();
+  today.setFullYear(today.getFullYear()-18);
+  dobInput.max = today.toISOString().split('T')[0];
+
+  let selectedGender = '';
+  function selectGender(el, val) {
+    document.querySelectorAll('.radio-opt').forEach(r => r.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedGender = val;
+    document.getElementById('gender-err').style.display='none';
+  }
+
+  function togglePassword(id, btnId) {
+    const inp=document.getElementById(id), btn=document.getElementById(btnId);
+    inp.type=inp.type==='password'?'text':'password';
+    btn.textContent=inp.type==='text'?'🙈':'👁️';
+  }
+
+  function showAlert(msg,type='error'){
+    const box=document.getElementById('alertBox'),msgEl=document.getElementById('alertMsg'),icon=document.getElementById('alertIcon');
+    box.className='alert-box '+type; msgEl.textContent=msg;
+    icon.textContent=type==='success'?'✅':'⚠️'; box.style.display='flex';
+  }
+  function hideAlert(){ document.getElementById('alertBox').style.display='none'; }
+
+  function setError(id,msg,show){
+    const inp=document.getElementById(id), err=document.getElementById(id+'-err');
+    if(show){ inp.classList.add('error'); if(err){err.textContent=msg;err.style.display='block';} }
+    else     { inp.classList.remove('error'); if(err) err.style.display='none'; }
+    return !show;
+  }
+
+  // Password strength
+  function checkStrength(pw){
+    let score=0;
+    if(pw.length>=8) score++;
+    if(/[A-Z]/.test(pw)) score++;
+    if(/[0-9]/.test(pw)) score++;
+    if(/[^A-Za-z0-9]/.test(pw)) score++;
+    const fill=document.getElementById('strengthFill'), txt=document.getElementById('strengthText');
+    const levels=[
+      {w:'0%',c:'transparent',t:''},
+      {w:'25%',c:'#ef5350',t:'Bahut Kamzor'},
+      {w:'50%',c:'#ff9800',t:'Kaafi Kamzor'},
+      {w:'75%',c:'#fdd835',t:'Theek Hai'},
+      {w:'100%',c:'#66bb6a',t:'Bahut Mazboot ✓'}
+    ];
+    fill.style.width=levels[score].w; fill.style.background=levels[score].c;
+    txt.textContent=levels[score].t;
+    txt.style.color=levels[score].c;
+  }
+
+  // Aadhar auto-format
+  document.getElementById('aadhar').addEventListener('input', function(){
+    let v=this.value.replace(/\D/g,'').slice(0,12);
+    this.value=v.replace(/(\d{4})(?=\d)/g,'$1 ');
+  });
+
+  // PAN uppercase
+  document.getElementById('pan').addEventListener('input',function(){ this.value=this.value.toUpperCase(); });
+
+  // Mobile format
+  ['regMobile'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    el.addEventListener('input',function(){
+      let v=this.value.replace(/\D/g,'');
+      this.value=v;
+    });
+  });
+
+  let currentStep=1;
+
+  function updateStepUI(step){
+    for(let i=1;i<=4;i++){
+      const sc=document.getElementById('sc'+i), si=document.getElementById('sitem'+i);
+      if(i<step){ sc.className='step-circle done'; sc.textContent='✓'; si.className='step-item'; }
+      else if(i===step){ sc.className='step-circle active'; sc.textContent=i; si.className='step-item active'; }
+      else { sc.className='step-circle'; sc.textContent=i; si.className='step-item'; }
+    }
+    for(let i=1;i<=3;i++){
+      document.getElementById('sl'+i).className='step-line'+(i<step?' done':'');
+    }
+    for(let i=1;i<=4;i++){
+      const dot=document.getElementById('dot'+i);
+      if(dot) dot.className='prog-dot'+(i===step?' active':'');
+    }
+    // Hide steps indicator on success
+    document.getElementById('stepsIndicator').style.display = step>4 ? 'none':'flex';
+    document.getElementById('progDots').style.display = step>4 ? 'none':'flex';
+  }
+
+  function goStep(target){
+    hideAlert();
+    if(!validateStep(currentStep)) return;
+    // Special: step 3 -> 4 sends OTP
+    if(currentStep===3 && target===4){
+      const mob=document.getElementById('regMobile').value;
+      const masked=mob.slice(0,2)+'*****'+mob.slice(-3);
+      document.getElementById('maskedMobile').textContent=masked;
+      startRegTimer(60);
+      setTimeout(()=>document.getElementById('votp1').focus(),200);
+    }
+    document.getElementById('panel'+currentStep).classList.remove('active');
+    document.getElementById('panel'+target).classList.add('active');
+    currentStep=target;
+    updateStepUI(target);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  function validateStep(s){
+    let ok=true;
+    if(s===1){
+      ok = setError('firstName','Pehla naam zaroori hai',!document.getElementById('firstName').value.trim()) && ok;
+      ok = setError('lastName','Aakhiri naam zaroori hai',!document.getElementById('lastName').value.trim()) && ok;
+      ok = setError('dob','Janm tithi zaroori hai (18+)',!document.getElementById('dob').value) && ok;
+      if(!selectedGender){ document.getElementById('gender-err').style.display='block'; ok=false; }
+      const aadh=document.getElementById('aadhar').value.replace(/\s/g,'');
+      ok = setError('aadhar','12-digit Aadhar zaroori hai', aadh.length!==12) && ok;
+      const pan=document.getElementById('pan').value;
+      ok = setError('pan','Valid PAN zaroori hai (ABCDE1234F format)',!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(pan)) && ok;
+    }
+    if(s===2){
+      ok = setError('email','Valid email zaroori hai',!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value)) && ok;
+      const mob=document.getElementById('regMobile').value.replace(/\s/g,'');
+      ok = setError('regMobile','10-digit mobile zaroori hai',mob.length<10) && ok;
+      ok = setError('accountType','Account type chunein',!document.getElementById('accountType').value) && ok;
+      ok = setError('address','Pata zaroori hai',!document.getElementById('address').value.trim()) && ok;
+      ok = setError('city','Shahar likhein',!document.getElementById('city').value.trim()) && ok;
+      ok = setError('pincode','6-digit PIN code zaroori hai',!/^\d{6}$/.test(document.getElementById('pincode').value)) && ok;
+    }
+    if(s===3){
+      ok = setError('regUsername','Username min 6 characters',document.getElementById('regUsername').value.trim().length<6) && ok;
+      const pw=document.getElementById('regPassword').value;
+      ok = setError('regPassword','Password min 8 char, number aur symbol hona chahiye',pw.length<8||!/\d/.test(pw)||!/[^A-Za-z0-9]/.test(pw)) && ok;
+      ok = setError('confirmPassword','Dono passwords match nahi ho rahe',pw!==document.getElementById('confirmPassword').value) && ok;
+      ok = setError('regMpin','4-digit MPIN zaroori hai',!/^\d{4}$/.test(document.getElementById('regMpin').value)) && ok;
+      if(!document.getElementById('termsCheck').checked){ showAlert('Terms & Conditions accept karna zaroori hai'); ok=false; }
+    }
+    return ok;
+  }
+
+  // OTP timer
+  let regTimerInt;
+  function startRegTimer(sec){
+    clearInterval(regTimerInt);
+    const el=document.getElementById('regTimer');
+    let s=sec; el.textContent='('+s+'s)';
+    regTimerInt=setInterval(()=>{ s--; el.textContent='('+s+'s)'; if(s<=0){clearInterval(regTimerInt);el.textContent='';} },1000);
+  }
+
+  function resendRegOtp(e){ e.preventDefault(); startRegTimer(60); showAlert('OTP dobara bheja gaya!','success'); }
+
+  // OTP auto-jump
+  document.querySelectorAll('.otp-input').forEach((inp,idx,all)=>{
+    inp.addEventListener('input',()=>{ if(inp.value && idx<all.length-1) all[idx+1].focus(); });
+    inp.addEventListener('keydown',e=>{ if(e.key==='Backspace'&&!inp.value&&idx>0) all[idx-1].focus(); });
+  });
+
+  function submitRegistration(){
+    const otp=[1,2,3,4,5,6].map(i=>document.getElementById('votp'+i).value).join('');
+    if(otp.length<6){ showAlert('Poora 6-digit OTP daalein'); return; }
+    const btn=document.getElementById('verifyBtn');
+    btn.classList.add('loading');
+    setTimeout(()=>{
+      btn.classList.remove('loading');
+      // Generate Customer ID
+      const uid='PSB-'+Math.random().toString(36).substr(2,8).toUpperCase();
+      document.getElementById('generatedUid').textContent=uid;
+      // Show success
+      document.getElementById('panel4').classList.remove('active');
+      document.getElementById('panel5').classList.add('active');
+      currentStep=5;
+      document.getElementById('stepsIndicator').style.display='none';
+      document.getElementById('progDots').style.display='none';
+    },2000);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+name: Native Build (liboqs)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  android-build:
+    name: Build liboqs for Android
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Ensure scripts are executable
+        run: |
+          chmod +x ./scripts/build_liboqs_android.sh 2>/dev/null || echo "Android build script not found"
+      - name: Build liboqs (Android) - Optional
+        run: |
+          if [ -f ./scripts/build_liboqs_android.sh ] && [ -n "${ANDROID_NDK_HOME}" ]; then
+            ./scripts/build_liboqs_android.sh "$ANDROID_NDK_HOME" ./artifacts/android
+          else
+            echo "Skipping Android build: script or ANDROID_NDK_HOME not available"
+          fi
+        env:
+          ANDROID_NDK_HOME: ${{ secrets.ANDROID_NDK_HOME }}
+        continue-on-error: true
+      - name: Upload Android artifacts (if present)
+        uses: actions/upload-artifact@v4
+        with:
+          name: liboqs-android
+          path: ./artifacts/android
+        continue-on-error: true
+
+  ios-build:
+    name: Build liboqs for iOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure scripts are executable
+        run: |
+          chmod +x ./scripts/build_liboqs_ios.sh 2>/dev/null || echo "iOS build script not found"
+      - name: Build liboqs (iOS) - Optional
+        run: |
+          if [ -f ./scripts/build_liboqs_ios.sh ]; then
+            ./scripts/build_liboqs_ios.sh ./artifacts/ios
+          else
+            echo "Skipping iOS build: script not found"
+          fi
+        continue-on-error: true
+      - name: Upload iOS artifacts (if present)
+        uses: actions/upload-artifact@v4
+        with:
+          name: liboqs-ios
+          path: ./artifacts/ios
+        continue-on-error: true
+      - name: Publish artifacts on tag (if present)
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          if [ -f ./scripts/publish_artifacts.sh ]; then
+            chmod +x ./scripts/publish_artifacts.sh
+            ./scripts/publish_artifacts.sh ./artifacts/ios
+          else
+            echo "Publish script not found"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
